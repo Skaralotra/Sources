@@ -31,6 +31,7 @@ LIB	+=	lib/str/display_error.c
 LIB	+=	lib/str/display_str.c
 LIB	+=	lib/str/nbr_to_str.c
 LIB	+=	lib/str/str_len.c
+LIB	+=	lib/str/str_identical.c
 
 LIB	+=	lib/tab/concat_tab.c
 LIB	+=	lib/tab/create_tab.c
@@ -56,14 +57,10 @@ $(NAME):
 	@clang -o $(NAME) $(SRC) $(LIB) -I include/
 
 clean:
-	@rm -Rf ./*~
+	@rm -f ./a.out include/*.pch
 
 fclean:	clean
 	@rm -f $(NAME)
-	@rm -f include/*.pch
-
-myclean: clean fclean
-	@rm -Rf .git .idea cmake-build-debug CMakeLists.txt
 
 re:	fclean all
 
@@ -80,9 +77,9 @@ gcovr_run: unit_tests
 	@gcovr -e tests
 
 style_check:
-	@epiclang $(MAIN) $(SRC) $(INCLUDE)
+	@epiclang $(INCLUDE) $(SRC) $(LIB) -I./include
 	@echo "\033[97m\033[4mepiclang done\033[0m"
-	@rm -f includes/*.pch
+	@make clean --no-print-directory
 
 HEADER = "/*\n** EPITECH PROJECT, 2025\n** <project name>\n** File description:\n** <description>\n*/"
 GUARD = "\n\n\#ifndef HEADER_H_\n    \#define HEADER_H_\n\n    \#define ERROR_CODE (84)\n\n\#endif //HEADER_H_"

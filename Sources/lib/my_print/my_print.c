@@ -26,7 +26,8 @@ static int sort_type(char type, void *argument)
     return (int)write(1, &type, 1);
 }
 
-int my_print(char const *format, void *arguments[]) {
+int my_print(char const *format, void *arguments[])
+{
     int char_total = 0;
     int used_args = 0;
 

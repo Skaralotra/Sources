@@ -7,7 +7,8 @@
 
 #include "tab.h"
 
-int display_tab(char *const *tab) {
+int display_tab(char *const *tab)
+{
     int total_len = 0;
 
     for (int word = 0; tab[word]; word++) {
