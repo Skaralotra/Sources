@@ -45,19 +45,25 @@ SRC	=	src/main.c
 
 TEST	=	tests/unit_tests.c
 
+TESTS_NAME = unit_tests
+
 ### compilation ###
+INCLUDE_FLAG = "-I"
+INCLUDE_PATH = "./include"
 
-NAME	=	name
+NAME = name
 
-### commands ###
+CC = "clang"
+
+### rules ###
 
 all:	$(NAME)
 
 $(NAME):
-	@clang -o $(NAME) $(SRC) $(LIB) -I include/
+	@$(CC) -o $(NAME) $(SRC) $(LIB) $(INCLUDE_FLAG)$(INCLUDE_PATH)
 
 clean:
-	@rm -f ./a.out include/*.pch
+	@rm -f ./a.out $(INCLUDE_PATH)*.pch
 
 fclean:	clean
 	@rm -f $(NAME)
@@ -68,16 +74,16 @@ run: re
 	@./$(NAME)
 
 unit_tests: re
-	@clang -o unit_tests $(SRC) $(TEST) -I include/ --coverage -lcriterion
+	@clang -o $(TESTS_NAME) $(SRC) $(TEST) $(INCLUDE_FLAG)$(INCLUDE_PATH) --coverage -lcriterion
 
 tests_run: unit_tests
-	@./unit_tests
+	@./$(TESTS_NAME)
 
 gcovr_run: unit_tests
-	@gcovr -e tests
+	@gcovr -e $(TESTS_NAME)
 
 style_check:
-	@epiclang $(INCLUDE) $(SRC) $(LIB) -I./include
+	@epiclang $(INCLUDE) $(SRC) $(LIB) $(INCLUDE_FLAG)$(INCLUDE_PATH)
 	@echo "\033[97m\033[4mepiclang done\033[0m"
 	@make clean --no-print-directory
 
