@@ -40,10 +40,9 @@ LIB	+=	lib/tab/display_tab.c
 LIB	+=	lib/tab/free_tab.c
 LIB	+=	lib/tab/tab_len.c
 
-LIB +=	lib/error/error.c
+LIB +=	lib/error/call_error.c
 
 SRC	=	src/main.c
-SRC +=	src/my_sudo.c
 
 ### tests ###
 
@@ -55,7 +54,7 @@ TESTS_NAME = unit_tests
 INCLUDE_FLAG = "-I"
 INCLUDE_PATH = "./include/"
 
-NAME = my_sudo
+NAME = name
 
 CC = "clang"
 
