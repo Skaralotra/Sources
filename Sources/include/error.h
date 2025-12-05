@@ -12,6 +12,6 @@
     #include <unistd.h>
     #include <stdbool.h>
 
-int error(char *message);
+int call_error(char *message);
 
 #endif //LIB_ERROR_H
