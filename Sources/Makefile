@@ -12,6 +12,8 @@ INCLUDE	+=	include/typedef.h
 INCLUDE	+=	include/nbr.h
 INCLUDE	+=	include/str.h
 INCLUDE	+=	include/tab.h
+INCLUDE	+=	include/my_print.h
+INCLUDE	+=	include/error.h
 
 LIB	=	lib/my_print/my_print.c
 LIB	+=	lib/my_print/flag_char.c
