@@ -19,5 +19,6 @@ int display_error(char const *str);
 char *concat_str(char *str1, char *str2);
 void concat_stack(char *dest, char *str1, char *str2);
 bool str_identical(char const *str1, char const *str2);
+char *nbr_to_str(int nb);
 
 #endif //LIB_STR_H

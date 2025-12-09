@@ -8,7 +8,6 @@
 #include "define.h"
 #include "my_print.h"
 #include "error.h"
-#include <unistd.h>
 
 int main(int argc, char *argv[])
 {

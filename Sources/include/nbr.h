@@ -11,7 +11,7 @@
     #include <unistd.h>
 
 int nbr_len(unsigned nb);
-int get_nbr(char const *str);
+int str_to_nbr(char const *str);
 int display_base(int nb, int base);
 int display_nbr(int nb);
 int power(int nb, int p);

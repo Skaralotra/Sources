@@ -1,0 +1,6 @@
+.idea/*
+cmake-build-debug/*
+.git/*
+CMakeLists.txt
+include/*.pch
+*.o
