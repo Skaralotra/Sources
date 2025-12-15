@@ -46,32 +46,49 @@ LIB +=	lib/error/call_error.c
 
 SRC	=	src/main.c
 
+OBJ	= $(LIB:.c=.o)
+
+#$(find . -type f -name "*.c")
+
+ARCHIVE = "libskaralotra.a"
+
 ### tests ###
 
 TEST	=	tests/unit_tests.c
 
-TESTS_NAME = unit_tests
+TESTS_NAME = "unit_tests"
 
 ### compilation ###
 INCLUDE_FLAG = "-I"
 INCLUDE_PATH = "./include/"
 
-NAME = name
+CSFML_FLAGS = "-lcsfml-window -lcsfml-system -lcsfml-graphics"
+
+CFLAGS = "-g3"
 
 CC = "clang"
 
+NAME = "name"
+
 ### rules ###
+
+%.o: %.c
+		$(CC) $(INCLUDE_FLAG)$(INCLUDE_PATH) -c $< -o $@
 
 all:	$(NAME)
 
-$(NAME):
-	@$(CC) -o $(NAME) $(SRC) $(LIB) $(INCLUDE_FLAG)$(INCLUDE_PATH)
+$(NAME): $(OBJ)
+	@ar rc $(ARCHIVE) $(OBJ)
+	@$(CC) -o $(NAME) $(SRC) $(INCLUDE_FLAG)$(INCLUDE_PATH) $(ARCHIVE) $(CFLAGS)
 
 clean:
-	@rm -f ./a.out $(INCLUDE_PATH)*.pch
+	@rm -fr ./*.o
+	@rm -f ./a.out
+	@rm -f $(INCLUDE_PATH)*.pch
 
 fclean:	clean
 	@rm -f $(NAME)
+	@rm -f $(ARCHIVE)
 
 re:	fclean all
 
@@ -91,7 +108,3 @@ style_check:
 	@epiclang $(INCLUDE) $(SRC) $(LIB) $(INCLUDE_FLAG)$(INCLUDE_PATH)
 	@echo "\033[97m\033[4mepiclang done\033[0m"
 	@make clean --no-print-directory
-
-settle:
-	@echo "*" > .idea/.gitignore
-	@settle
