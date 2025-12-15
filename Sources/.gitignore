@@ -1,7 +1,12 @@
-.gitignore
-.idea/*
 cmake-build-debug/*
+.idea/*
 .git/*
 CMakeLists.txt
-include/*.pch
+
+libskaralotra.a
+.gitignore
+*.gcno
+*.pch
 *.o
+
+name

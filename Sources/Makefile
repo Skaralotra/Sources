@@ -5,7 +5,7 @@
 ## Universal Skaralotra Makefile
 ##
 
-# SOURCES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# SOURCES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 INCLUDE := $(shell find ./include -type f -name "*.h")
 
@@ -15,11 +15,11 @@ SRC		:= $(shell find ./src -type f -name "*.c")
 
 OBJ		= $(LIB:.c=.o)
 
-# TESTS	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
+# TESTS	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 TEST	:= $(shell find ./tests -type f -name "*.c")
 
-# COMPILATION	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
 CSFML_FLAGS = "-lcsfml-window -lcsfml-system -lcsfml-graphics"
@@ -33,14 +33,14 @@ INCLUDE_PATH = "./include/"
 #----- COMPILER -----#
 CC = "clang"
 
-# NAMES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 TESTS_NAME = "unit_tests"
 
 ARCHIVE = "lib/libskaralotra.a"
 
-NAME = "name"
+NAME = "my_radar"
 
-# RULES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+# RULES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- REDEFINITION -----#
 %.o: %.c
