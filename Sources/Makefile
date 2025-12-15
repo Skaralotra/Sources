@@ -5,96 +5,71 @@
 ## Universal Skaralotra Makefile
 ##
 
-### sources ###
+# SOURCES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-INCLUDE	=	include/define.h
-INCLUDE	+=	include/typedef.h
-INCLUDE	+=	include/nbr.h
-INCLUDE	+=	include/str.h
-INCLUDE	+=	include/tab.h
-INCLUDE	+=	include/my_print.h
-INCLUDE	+=	include/error.h
+INCLUDE := $(shell find ./include -type f -name "*.h")
 
-LIB	=	lib/my_print/my_print.c
-LIB	+=	lib/my_print/flag_char.c
-LIB	+=	lib/my_print/flag_nbr.c
-LIB	+=	lib/my_print/flag_str.c
-LIB	+=	lib/my_print/flag_tab.c
+LIB		:= $(shell find ./lib -type f -name "*.c")
 
-LIB	+=	lib/nbr/display_base.c
-LIB	+=	lib/nbr/display_nbr.c
-LIB	+=	lib/nbr/nbr_len.c
-LIB	+=	lib/nbr/power.c
-LIB	+=	lib/nbr/str_to_nbr.c
+SRC		:= $(shell find ./src -type f -name "*.c")
 
-LIB	+=	lib/str/concat_str.c
-LIB	+=	lib/str/concat_stack.c
-LIB	+=	lib/str/create_str.c
-LIB	+=	lib/str/display_error.c
-LIB	+=	lib/str/display_str.c
-LIB	+=	lib/str/nbr_to_str.c
-LIB	+=	lib/str/str_len.c
-LIB	+=	lib/str/str_identical.c
+OBJ		= $(LIB:.c=.o)
 
-LIB	+=	lib/tab/concat_tab.c
-LIB	+=	lib/tab/create_tab.c
-LIB	+=	lib/tab/display_tab.c
-LIB	+=	lib/tab/free_tab.c
-LIB	+=	lib/tab/tab_len.c
+# TESTS	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ##
 
-LIB +=	lib/error/call_error.c
+TEST	:= $(shell find ./tests -type f -name "*.c")
 
-SRC	=	src/main.c
+# COMPILATION	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-OBJ	= $(LIB:.c=.o)
-
-#$(find . -type f -name "*.c")
-
-ARCHIVE = "libskaralotra.a"
-
-### tests ###
-
-TEST	=	tests/unit_tests.c
-
-TESTS_NAME = "unit_tests"
-
-### compilation ###
-INCLUDE_FLAG = "-I"
-INCLUDE_PATH = "./include/"
-
+#----- FLAGS -----#
 CSFML_FLAGS = "-lcsfml-window -lcsfml-system -lcsfml-graphics"
 
 CFLAGS = "-g3"
 
+#----- INCLUDE -----#
+INCLUDE_FLAG = "-I"
+INCLUDE_PATH = "./include/"
+
+#----- COMPILER -----#
 CC = "clang"
+
+# NAMES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+TESTS_NAME = "unit_tests"
+
+ARCHIVE = "lib/libskaralotra.a"
 
 NAME = "name"
 
-### rules ###
+# RULES	### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
+#----- REDEFINITION -----#
 %.o: %.c
-		$(CC) $(INCLUDE_FLAG)$(INCLUDE_PATH) -c $< -o $@
+		@$(CC) $(INCLUDE_FLAG)$(INCLUDE_PATH) -c $< -o $@
 
+#----- DEFAULT -----#
 all:	$(NAME)
 
 $(NAME): $(OBJ)
 	@ar rc $(ARCHIVE) $(OBJ)
-	@$(CC) -o $(NAME) $(SRC) $(INCLUDE_FLAG)$(INCLUDE_PATH) $(ARCHIVE) $(CFLAGS)
+	@$(CC) -o $(NAME) $(SRC) $(ARCHIVE) $(INCLUDE_FLAG)$(INCLUDE_PATH) $(CFLAGS)
+	@make clean --no-print-directory
 
 clean:
-	@rm -fr ./*.o
 	@rm -f ./a.out
 	@rm -f $(INCLUDE_PATH)*.pch
+	@rm -f ./*.gcno
 
 fclean:	clean
 	@rm -f $(NAME)
 	@rm -f $(ARCHIVE)
+	@find . -type f -name "*.o" -delete
 
 re:	fclean all
 
 run: re
 	@./$(NAME)
 
+#----- TESTS -----#
 unit_tests: re
 	@clang -o $(TESTS_NAME) $(SRC) $(TEST) $(INCLUDE_FLAG)$(INCLUDE_PATH) --coverage -lcriterion
 
