@@ -9,10 +9,11 @@
     #define MY_PRINT_H
 
 //---IMPORTS---//
+    #include "define.h"
     #include <unistd.h>
-    #include "nbr.h"
-    #include "str.h"
-    #include "tab.h"
+    #include "../nbr/nbr.h"
+    #include "../str/str.h"
+    #include "../tab/tab.h"
 
 //---STRUCTURES---//
 

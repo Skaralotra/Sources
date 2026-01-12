@@ -6,7 +6,7 @@
 */
 
 #include "nbr.h"
-#include "str.h"
+#include "../str/str.h"
 
 int get_nbr(char const *str)
 {

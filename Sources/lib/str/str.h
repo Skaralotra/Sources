@@ -8,6 +8,7 @@
 #ifndef LIB_STR_H
     #define LIB_STR_H
 
+    #include "define.h"
     #include <stdlib.h>
     #include <unistd.h>
     #include <stdbool.h>

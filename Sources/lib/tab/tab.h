@@ -9,7 +9,7 @@
     #define LIB_TAB_H
 
     #include "define.h"
-    #include "str.h"
+    #include "../str/str.h"
     #include <stdlib.h>
 
 int tab_len(char *const *tab);

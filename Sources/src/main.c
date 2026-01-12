@@ -6,8 +6,8 @@
 */
 
 #include "define.h"
-#include "my_print.h"
-#include "error.h"
+#include "../lib/my_print/my_print.h"
+#include "../lib/error/error.h"
 
 int main(int argc, char *argv[])
 {

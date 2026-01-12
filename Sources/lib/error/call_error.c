@@ -6,7 +6,7 @@
 */
 
 #include "define.h"
-#include "str.h"
+#include "../str/str.h"
 #include "error.h"
 
 int call_error(char *message)

@@ -8,6 +8,7 @@
 #ifndef LIB_NBR_H
     #define LIB_NBR_H
 
+    #include "define.h"
     #include <unistd.h>
 
 int nbr_len(unsigned nb);
