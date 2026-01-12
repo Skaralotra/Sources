@@ -22,9 +22,9 @@ TEST	:= $(shell find ./tests -type f -name "*.c")
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
-CSFML_FLAGS = "-lcsfml-window -lcsfml-system -lcsfml-graphics"
+CSFML_FLAGS = "-lcsfml-window" "-lcsfml-system" "-lcsfml-graphics"
 
-CFLAGS = "-g3"
+CFLAGS = "-Wall" "-g3"
 
 #----- INCLUDE -----#
 INCLUDE_FLAG = "-I"
@@ -36,9 +36,9 @@ CC = "clang"
 # NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 TESTS_NAME = "unit_tests"
 
-ARCHIVE = "lib/libskaralotra.a"
+ARCHIVE = "./lib/libskaralotra.a"
 
-NAME = "my_radar"
+NAME = "name"
 
 # RULES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -66,7 +66,7 @@ fclean:	clean
 
 re:	fclean all
 
-run: re
+run: all
 	@./$(NAME)
 
 #----- TESTS -----#
