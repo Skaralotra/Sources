@@ -3,10 +3,16 @@
 ** <project name>
 ** File description:
 ** <description>
-** Syntax Example :
-**  int var = 10;
-**  print("%d\n%b\n%s\n", (ARGS){&var, &var, "helloworld"});
 */
+
+/** Syntax Example ***
+
+    char const str[] = "hello";
+    int var = str_len(str);
+
+    print("%d\n%b\n%s\n%s", (ARGS){&var, &var, str, "word"});
+
+*** Syntax Example **/
 
 #ifndef MY_PRINT_H
     #define MY_PRINT_H
@@ -16,7 +22,7 @@
 
 //---IMPORTS---//
     #include <unistd.h>
-    #include "nbr.h"
+    #include "num.h"
     #include "str.h"
     #include "tab.h"
 

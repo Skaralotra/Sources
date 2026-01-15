@@ -3,13 +3,6 @@
 ** <project name>
 ** File description:
 ** <description>
-** Syntax Example :
-**     if (error_free((free_array_t []){
-**        {!array1, array1, &free},
-**        {!array2, array2, &free},
-**        {!array3, array3, &free},
-**        {NULL, NULL, NULL}}))
-**        return call_error("Malloc Failed Main");
 */
 
 #include "error.h"

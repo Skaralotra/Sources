@@ -11,10 +11,7 @@
 
 int main(int const argc, char *argv[])
 {
-    int var = 10;
-
-    print("%d\n%b\n%s\n", (ARGS){&var, &var, "helloworld"});
-    if (var == 10)
-        return call_error("error message", ERROR_DATA);
+    if (print("%s %s\n", (ARGS){"Hello", "Word"}) == 10)
+        return call_error("Error Message", ERROR_DATA);
     return SUCCESS_CODE;
 }

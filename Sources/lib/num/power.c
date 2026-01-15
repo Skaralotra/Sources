@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "nbr.h"
+#include "num.h"
 
 int power(int const nb, int const p)
 {

@@ -6,7 +6,7 @@
 */
 
 #include "str.h"
-#include "../nbr/nbr.h"
+#include "../num/num.h"
 
 static void nbr_to_str_rec(unsigned nb, int index, char *str)
 {

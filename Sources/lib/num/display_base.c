@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#include "nbr.h"
+#include "num.h"
 
 int display_base(int nb, int const base)
 {
