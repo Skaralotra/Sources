@@ -5,9 +5,9 @@
 ** <description>
 */
 
-#include "my_print.h"
+#include "print.h"
 
-static const struct_t TAB[] = {
+static const type_t TYPES[] = {
     {'d', &flag_decimal},
     {'x', &flag_hexa},
     {'o', &flag_octal},
@@ -18,22 +18,22 @@ static const struct_t TAB[] = {
     {0, NULL}
 };
 
-static int sort_type(char type, void *argument)
+static int call_type(int const fd, char const type, void const *arg)
 {
-    for (int i = 0; TAB[i].type; i++)
-        if (type == TAB[i].type)
-            return TAB[i].func(argument);
+    for (int i = 0; TYPES[i].type; i++)
+        if (type == TYPES[i].type)
+            return TYPES[i].func(arg);
     return (int)write(1, &type, 1);
 }
 
-int my_print(char const *format, void *arguments[])
+int dprint(int const fd, char const *format, void const *args[])
 {
     int char_total = 0;
     int used_args = 0;
 
     for (int i = 0; format[i]; i++)
         if (format[i] == '%') {
-            char_total += sort_type(format[i + 1], arguments[used_args]);
+            char_total += call_type(fd, format[i + 1], args[used_args]);
             used_args++;
             i++;
         } else

@@ -12,6 +12,4 @@
     #define ERROR_CODE (84)
     #define STR_END (0)
 
-int function(int var);
-
 #endif //DEFINE_H

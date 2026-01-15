@@ -6,15 +6,13 @@
 */
 
 #include "error.h"
-#include "my_print.h"
+#include "print.h"
 
-int call_error(char *message, error_data_t *data)
+int call_error(char const *message, error_data_t const *data)
 {
-//printf, dprintf, printi
-    my_print(
-        "- - - ERROR - - -\n"
+    dprint(2, "- - - ERROR - - -\n"
         "%s|%s:%d Caught Error : %s"
         "\n- - - - - - - - -\n",
-        (void *[]){data->file, data->func, &data->line, message});
+        (ARGS){data->file, data->func, &data->line, message});
     return ERROR_CODE;
 }
