@@ -3,8 +3,9 @@ cmake-build-debug/*
 .git/*
 CMakeLists.txt
 
-libskaralotra.a
 .gitignore
+libmy.a
+a.out
 *.gcno
 *.pch
 *.o

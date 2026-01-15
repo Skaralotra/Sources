@@ -7,7 +7,7 @@
 
 #include "nbr.h"
 
-int display_nbr(int nb)
+int display_nbr(int const nb)
 {
     return display_base(nb, 10);
 }

@@ -8,11 +8,10 @@
 #ifndef LIB_NBR_H
     #define LIB_NBR_H
 
-    #include "define.h"
     #include <unistd.h>
 
 int nbr_len(unsigned nb);
-int str_to_nbr(char const *str);
+int str_to_nbr(char *str);
 int display_base(int nb, int base);
 int display_nbr(int nb);
 int power(int nb, int p);

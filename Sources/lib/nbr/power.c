@@ -7,7 +7,7 @@
 
 #include "nbr.h"
 
-int power(int nb, int p)
+int power(int const nb, int const p)
 {
     if (p == 0)
         return 1;

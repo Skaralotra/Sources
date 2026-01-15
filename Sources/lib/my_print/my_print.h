@@ -9,7 +9,6 @@
     #define MY_PRINT_H
 
 //---IMPORTS---//
-    #include "define.h"
     #include <unistd.h>
     #include "../nbr/nbr.h"
     #include "../str/str.h"
@@ -25,16 +24,16 @@ int my_print(char const *format, void *arguments[]);
 //---STRUCTURES---//
 typedef struct struct_list_t {
     char type;
-    int (*func)(void *);
+    int (*func)(void const *);
 } struct_t;
 
 //---PROTOTYPES---//
-int flag_char_tab(void *argument);
-int flag_char(void *argument);
-int flag_str(void *argument);
-int flag_decimal(void *argument);
-int flag_hexa(void *argument);
-int flag_octal(void *argument);
-int flag_binary(void *argument);
+int flag_char_tab(void const *argument);
+int flag_char(void const *argument);
+int flag_str(void const *argument);
+int flag_decimal(void const *argument);
+int flag_hexa(void const *argument);
+int flag_octal(void const *argument);
+int flag_binary(void const *argument);
 
 #endif //MY_PRINT_H

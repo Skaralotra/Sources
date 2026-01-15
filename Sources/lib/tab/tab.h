@@ -8,7 +8,6 @@
 #ifndef LIB_TAB_H
     #define LIB_TAB_H
 
-    #include "define.h"
     #include "../str/str.h"
     #include <stdlib.h>
 

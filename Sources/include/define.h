@@ -8,8 +8,10 @@
 #ifndef DEFINE_H
     #define DEFINE_H
 
-    #define ERROR_CODE (84)
     #define SUCCESS_CODE (0)
+    #define ERROR_CODE (84)
     #define STR_END (0)
+
+int function(int var);
 
 #endif //DEFINE_H

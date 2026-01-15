@@ -5,9 +5,11 @@
 ** <description>
 */
 
-#include "str.h"
+#include "../str/str.h"
 
 int display_error(char const *str)
 {
+    if (!str)
+        return (int)write(2, "(null)", 6);
     return (int)write(2, str, str_len(str));
 }

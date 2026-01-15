@@ -7,79 +7,83 @@
 
 # SOURCES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-INCLUDE := $(shell find ./include -type f -name "*.h")
+LIB		:= $(shell find ./lib/ -type f -name "*.c")
 
-LIB		:= $(shell find ./lib -type f -name "*.c")
+SRC		:= $(shell find ./src/ -type f -name "*.c")
 
-SRC		:= $(shell find ./src -type f -name "*.c")
-
-OBJ		= $(LIB:.c=.o)
+OBJ	 = $(SRC:.c=.o)
 
 # TESTS	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
-TEST	:= $(shell find ./tests -type f -name "*.c")
+TEST	:= $(shell find ./tests/ -type f -name "*.c")
+
+TEST_OBJ	= $(TEST:.c=.o)
 
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
-CSFML_FLAGS = "-lcsfml-window" "-lcsfml-system" "-lcsfml-graphics"
+CFLAGS = "-Wall" "-Wextra"
 
-CFLAGS = "-Wall" "-g3"
+CPPFLAGS = "-I./include"
+CPPFLAGS += $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
-#----- INCLUDE -----#
-INCLUDE_FLAG = "-I"
-INCLUDE_PATH = "./include/"
+LDFLAGS = "-L./lib/"
+LDLIBS	= "-lmy"
 
 #----- COMPILER -----#
 CC = "clang"
 
 # NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-TESTS_NAME = "unit_tests"
+TESTS_NAME 	= "unit_tests"
 
-ARCHIVE = "./lib/libskaralotra.a"
+EPIC_BIN	= "epic_bin"
 
-NAME = "name"
+NAME 		= name
 
 # RULES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-#----- REDEFINITION -----#
-%.o: %.c
-		@$(CC) $(INCLUDE_FLAG)$(INCLUDE_PATH) -c $< -o $@
 
 #----- DEFAULT -----#
 all:	$(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $(ARCHIVE) $(OBJ)
-	@$(CC) -o $(NAME) $(SRC) $(ARCHIVE) $(INCLUDE_FLAG)$(INCLUDE_PATH) $(CFLAGS)
-	@make clean --no-print-directory
+	@ $(MAKE) -C ./lib/
+	@ $(CC) $(LDFLAGS) -o $(NAME) $(OBJ) $(LDLIBS)
 
 clean:
-	@rm -f ./a.out
-	@rm -f $(INCLUDE_PATH)*.pch
-	@rm -f ./*.gcno
+	@ find . -type f -name "*.gcno" -delete
+	@ find . -type f -name "*~" -delete
+	@ find . -type f -name "*#" -delete
+	@ find ./src/ -type f -name "*.o" -delete
 
 fclean:	clean
-	@rm -f $(NAME)
-	@rm -f $(ARCHIVE)
-	@find . -type f -name "*.o" -delete
+	@ rm -f $(NAME)
+	@ $(MAKE) -C ./lib/ fclean --no-print-directory
 
 re:	fclean all
 
 run: all
-	@./$(NAME)
+	@ ./$(NAME)
 
 #----- TESTS -----#
 unit_tests: re
-	@clang -o $(TESTS_NAME) $(SRC) $(TEST) $(INCLUDE_FLAG)$(INCLUDE_PATH) --coverage -lcriterion
+	@ clang -o $(TESTS_NAME) $(SRC) $(TEST) $(INCLUDE_FLAG)$(INCLUDE_PATH) --coverage -lcriterion
 
-tests_run: unit_tests
-	@./$(TESTS_NAME)
+test_run: unit_tests
+	@ ./$(TESTS_NAME)
 
 gcovr_run: unit_tests
-	@gcovr -e $(TESTS_NAME)
+	@ gcovr -e $(TESTS_NAME)
+
+epiclean:
+	@ rm -f $(EPIC_BIN)
+	@ find . -type f -name "*.pch" -delete
 
 style_check:
-	@epiclang $(INCLUDE) $(SRC) $(LIB) $(INCLUDE_FLAG)$(INCLUDE_PATH)
-	@echo "\033[97m\033[4mepiclang done\033[0m"
-	@make clean --no-print-directory
+	@ epiclang -o $(EPIC_BIN) $(SRC) $(LIB) $(CPPFLAGS)
+	@ echo "[Epiclang Done]"
+	@ $(MAKE) epiclean --no-print-directory
+
+debug: CFLAGS += "-g3"
+debug: re
+
+.PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check debug

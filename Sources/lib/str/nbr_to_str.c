@@ -10,14 +10,14 @@
 
 static void nbr_to_str_rec(unsigned nb, int index, char *str)
 {
-    str[index - 1] = (nb % 10) + '0';
+    str[index - 1] = (char)(nb % 10 + '0');
     if (nb >= 10)
         nbr_to_str_rec(nb / 10, index - 1, str);
 }
 
-char *nbr_to_str(int nb)
+char *nbr_to_str(int const nb)
 {
-    int len = nbr_len(nb) + ((nb < 0) ? 1 : 0);
+    int const len = nbr_len(nb) + ((nb < 0) ? 1 : 0);
     char *str = create_str(len + 1);
 
     if (!str)

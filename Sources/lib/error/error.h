@@ -8,7 +8,18 @@
 #ifndef LIB_ERROR_H
     #define LIB_ERROR_H
 
+    #define SUCCESS_CODE (0)
+    #define ERROR_CODE (84)
+    #define NULL ((void *)0)
+    #define ERROR_DATA ((error_data_t []){{__FILE__, __func__, __LINE__}})
+
     #include <stdbool.h>
+
+typedef struct error_data_s {
+    char *file;
+    char *func;
+    int line;
+} error_data_t;
 
 typedef struct free_array_s {
     bool condition;
@@ -16,7 +27,8 @@ typedef struct free_array_s {
     void (*function)(void *);
 } free_array_t;
 
-int call_error(char *message);
+int call_error(char *message, error_data_t *data);
 int error_free(free_array_t *free_array);
+int display_error(char const *str);
 
 #endif //LIB_ERROR_H

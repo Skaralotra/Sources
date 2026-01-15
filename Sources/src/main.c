@@ -6,14 +6,15 @@
 */
 
 #include "define.h"
-#include "../lib/my_print/my_print.h"
-#include "../lib/error/error.h"
+#include "error.h"
+#include "my_print.h"
 
-int main(int argc, char *argv[])
+int main(int const argc, char *argv[])
 {
     int var = 10;
 
-    if (my_print("%d\n%s\n%b\n", (void *[]){&var, "helloworld", &var}))
-        return call_error("error test\n");
+    my_print("%d\n%b\n%s\n", (void *[]){&var, &var, "helloworld"});
+    if (var == 10)
+        return call_error("error message", ERROR_DATA);
     return SUCCESS_CODE;
 }
