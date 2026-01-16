@@ -7,12 +7,12 @@
 
 #include "print.h"
 
-int flag_char(void const *argument)
+int flag_char(int const fd, void const *argument)
 {
-    return (int)write(1, argument, 1);
+    return dprint_char(fd, *(char *)argument);
 }
 
-int flag_str(void const *argument)
+int flag_str(int const fd, void const *argument)
 {
-    return display_str(argument);
+    return dprint_str(fd, argument);
 }

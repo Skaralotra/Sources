@@ -7,22 +7,22 @@
 
 #include "print.h"
 
-int flag_decimal(void const *argument)
+int flag_decimal(int const fd, void const *argument)
 {
-    return display_base(*(int *)argument, 10);
+    return dprint_base(fd, *(int *)argument, 10);
 }
 
-int flag_hexa(void const *argument)
+int flag_hexa(int const fd, void const *argument)
 {
-    return display_base(*(int *)argument, 16);
+    return dprint_base(fd, *(int *)argument, 16);
 }
 
-int flag_octal(void const *argument)
+int flag_octal(int const fd, void const *argument)
 {
-    return display_base(*(int *)argument, 8);
+    return dprint_base(fd, *(int *)argument, 8);
 }
 
-int flag_binary(void const *argument)
+int flag_binary(int const fd, void const *argument)
 {
-    return display_base(*(int *)argument, 2);
+    return dprint_base(fd, *(int *)argument, 2);
 }

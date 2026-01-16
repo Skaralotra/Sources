@@ -7,7 +7,7 @@
 
 #include "print.h"
 
-int flag_char_tab(void const *argument)
+int flag_char_tab(int fd, void const *argument)
 {
     return display_tab(argument);
 }
