@@ -6,13 +6,14 @@
 */
 
 #include "print.h"
+#include "str.h"
 
-int flag_char(int const fd, void const *argument)
+int type_char(int const fd, void const *argument)
 {
     return dprint_char(fd, *(char *)argument);
 }
 
-int flag_str(int const fd, void const *argument)
+int type_str(int const fd, void const *argument)
 {
     return dprint_str(fd, argument);
 }

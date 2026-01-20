@@ -7,7 +7,7 @@
 
 #include "error.h"
 
-int error_free(free_array_t *free_array)
+int error_free(free_array_t free_array[])
 {
     bool failed_batch = false;
 

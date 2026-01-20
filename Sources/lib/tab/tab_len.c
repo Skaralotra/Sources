@@ -7,7 +7,7 @@
 
 #include "tab.h"
 
-int tab_len(char *const *tab)
+int tab_len(void const *const *tab)
 {
     int len = 0;
 

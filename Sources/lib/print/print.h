@@ -19,14 +19,11 @@
 
 //---IMPORTS---//
     #include <unistd.h>
-    #include "num.h"
-    #include "str.h"
-    #include "tab.h"
 
 //---DEFINES---//
     #define ARGS void const *[]
 
-//---STRUCTURES---//
+//---TYPES---//
 
 //---PROTOTYPES---//
 // print.c
@@ -35,17 +32,17 @@ int dprint(int fd, char const *format, void const *args[]);
 
 //### INTERNAL COMPONENTS ###//
 
-typedef struct type_s {
+typedef struct print_type_s {
     char type;
     int (*func)(int fd, void const *);
-} type_t;
+} print_type_t;
 
-int flag_char_tab(int fd, void const *argument);
-int flag_char(int fd, void const *argument);
-int flag_str(int fd, void const *argument);
-int flag_decimal(int fd, void const *argument);
-int flag_hexa(int fd, void const *argument);
-int flag_octal(int fd, void const *argument);
-int flag_binary(int fd, void const *argument);
+int type_char_tab(int fd, void const *argument);
+int type_char(int fd, void const *argument);
+int type_str(int fd, void const *argument);
+int type_decimal(int fd, void const *argument);
+int type_hexa(int fd, void const *argument);
+int type_octal(int fd, void const *argument);
+int type_binary(int fd, void const *argument);
 
 #endif //MY_PRINT_H

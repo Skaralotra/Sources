@@ -7,14 +7,14 @@
 
 #include "print.h"
 
-static const type_t TYPES[] = {
-    {'d', &flag_decimal},
-    {'x', &flag_hexa},
-    {'o', &flag_octal},
-    {'b', &flag_binary},
-    {'t', &flag_char_tab},
-    {'s', &flag_str},
-    {'c', &flag_char},
+static const print_type_t TYPES[] = {
+    {'d', &type_decimal},
+    {'x', &type_hexa},
+    {'o', &type_octal},
+    {'b', &type_binary},
+    {'t', &type_char_tab},
+    {'s', &type_str},
+    {'c', &type_char},
     {0, NULL}
 };
 

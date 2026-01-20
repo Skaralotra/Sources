@@ -6,8 +6,9 @@
 */
 
 #include "print.h"
+#include "tab.h"
 
-int flag_char_tab(int fd, void const *argument)
+int type_char_tab(int const fd, void const *argument)
 {
-    return display_tab(argument);
+    return dprint_ctab(fd, argument);
 }

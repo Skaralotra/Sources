@@ -46,7 +46,7 @@ NAME 		= name
 all:	$(NAME)
 
 $(NAME): $(OBJ)
-	@ $(MAKE) -C ./lib/
+	@ $(MAKE) -C ./lib/ --no-print-directory
 	@ $(CC) $(LDFLAGS) -o $(NAME) $(OBJ) $(LDLIBS)
 
 clean:

@@ -26,7 +26,7 @@
     #define ERROR_CODE (84)
     #define ERROR_DATA (error_data_t []){{__FILE__, __FUNCTION__, __LINE__}}
 
-//---STRUCTURES---//
+//---TYPES---//
 typedef struct error_data_s {
     char const *file;
     char const *func;
@@ -40,8 +40,8 @@ typedef struct free_array_s {
 } free_array_t;
 
 //---PROTOTYPES---//
-int call_error(char const *message, error_data_t const *data);
-int error_free(free_array_t *free_array);
+int call_error(char const *message, error_data_t const data[]);
+int error_free(free_array_t free_array[]);
 
 //### INTERNAL COMPONENTS ###//
 

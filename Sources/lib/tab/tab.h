@@ -9,18 +9,14 @@
     #define LIB_TAB_H
 
 //---IMPORTS---//
-    #include "str.h"
-    #include <stdlib.h>
 
 //---DEFINES---//
 
-//---STRUCTURES---//
+//---TYPES---//
 
 //---PROTOTYPES---//
-int tab_len(char *const *tab);
-int display_tab(char *const *tab);
-char **create_tab(int size);
-char **concat_tab(char **tab, char *element);
-void free_tab(char **tab);
+int tab_len(void const *const *tab);
+int dprint_ctab(int fd, char const *const *tab);
+void free_tab(void **tab);
 
 #endif //LIB_TAB_H

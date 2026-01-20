@@ -14,7 +14,7 @@
 //---DEFINES---//
     #define IS_NUM(character) ('0' <= character && character <= '9' ? 1 : 0)
 
-//---STRUCTURES---//
+//---TYPES---//
 
 //---PROTOTYPES---//
 // print_num.c

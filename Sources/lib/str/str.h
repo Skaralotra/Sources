@@ -16,7 +16,7 @@
 //---DEFINES---//
     #define STR_END (0)
 
-//---STRUCTURES---//
+//---TYPES---//
 
 //---PROTOTYPES---//
 // print.c
