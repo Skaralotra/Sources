@@ -34,4 +34,5 @@ fclean:	clean
 
 re:	fclean all
 
+.SILENT: $(LIB_OBJ)
 .PHONY: all clean fclean re run unit_tests test_run gcovr_run style_check

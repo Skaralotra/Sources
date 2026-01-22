@@ -11,13 +11,12 @@ LIB		:= $(shell find ./lib/ -type f -name "*.c")
 
 SRC		:= $(shell find ./src/ -type f -name "*.c")
 
-OBJ	 = $(SRC:.c=.o)
+SRC_OBJ	 = $(SRC:.c=.o)
 
 # TESTS	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-TEST	:= $(shell find ./tests/ -type f -name "*.c")
-
-TEST_OBJ	= $(TEST:.c=.o)
+TEST		:= $(shell find ./tests/ -type f -name "*.c")
+TEST_LIB	:= $(shell find ./lib/ -type f -name "*.c")
+TEST_SRC	:= $(shell find ./src/ -type f -name "*.c" ! -name "main.c")
 
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -29,6 +28,8 @@ CPPFLAGS += $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
 LDFLAGS = "-L./lib/"
 LDLIBS	= "-lmy"
+
+CRIT 	= "--coverage" "-lcriterion"
 
 #----- COMPILER -----#
 CC = "clang"
@@ -45,18 +46,20 @@ NAME 		= name
 #----- DEFAULT -----#
 all:	$(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC_OBJ)
 	@ $(MAKE) -C ./lib/ --no-print-directory
-	@ $(CC) $(LDFLAGS) -o $(NAME) $(OBJ) $(LDLIBS)
+	@ $(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
 
 clean:
 	@ find . -type f -name "*.gcno" -delete
+	@ find . -type f -name "*.gcda" -delete
 	@ find . -type f -name "*~" -delete
 	@ find . -type f -name "*#" -delete
 	@ find ./src/ -type f -name "*.o" -delete
 
 fclean:	clean
 	@ rm -f $(NAME)
+	@ rm -f $(TESTS_NAME)
 	@ $(MAKE) -C ./lib/ fclean --no-print-directory
 
 re:	fclean all
@@ -66,13 +69,13 @@ run: all
 
 #----- TESTS -----#
 unit_tests: re
-	@ clang -o $(TESTS_NAME) $(SRC) $(TEST) $(INCLUDE_FLAG)$(INCLUDE_PATH) --coverage -lcriterion
+	@ $(CC) -o $(TESTS_NAME) $(TEST_LIB) $(TEST_SRC) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
 
 test_run: unit_tests
 	@ ./$(TESTS_NAME)
 
-gcovr_run: unit_tests
-	@ gcovr -e $(TESTS_NAME)
+gcovr_run: test_run
+	@ gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
 
 epiclean:
 	@ rm -f $(EPIC_BIN)
@@ -86,4 +89,5 @@ style_check:
 debug: CFLAGS += "-g3"
 debug: re
 
+.SILENT: $(SRC_OBJ)
 .PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check debug

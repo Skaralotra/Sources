@@ -4,10 +4,13 @@ cmake-build-debug/*
 CMakeLists.txt
 
 .gitignore
-libmy.a
-a.out
+unit_tests
 *.gcno
+*.gcda
 *.pch
 *.o
+*.a
+*.~
+*.#
 
 name

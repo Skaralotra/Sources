@@ -12,7 +12,7 @@ bool str_identical(char const *str1, char const *str2)
     int i = 0;
 
     if (!str1 || !str2)
-        return 0;
+        return (!str1 && !str2);
     for (; str1[i] && str2[i]; i++)
         if (str1[i] != str2[i])
             return false;
