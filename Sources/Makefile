@@ -6,6 +6,7 @@
 ##
 
 # SOURCES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
+TEST	:= $(shell find ./tests/ -type f -name "*.c")
 
 LIB		:= $(shell find ./lib/ -type f -name "*.c")
 
@@ -14,24 +15,19 @@ SRC		:= $(shell find ./src/ -type f -name "*.c")
 SRC_OBJ	 = $(SRC:.c=.o)
 
 # TESTS	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-TEST		:= $(shell find ./tests/ -type f -name "*.c")
-TEST_LIB	:= $(shell find ./lib/ -type f -name "*.c")
-TEST_SRC	:= $(shell find ./src/ -type f -name "*.c" ! -name "main.c")
 
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
 CFLAGS = "-Wall" "-Wextra"
 
-CPPFLAGS = "-I./include"
-CPPFLAGS += $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
+CPPFLAGS := "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
 LDFLAGS = "-L./lib/"
 LDLIBS	= "-lmy"
 
 CRIT 	= "--coverage" "-lcriterion"
 
-#----- COMPILER -----#
 CC = "clang"
 
 # NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
@@ -47,47 +43,48 @@ NAME 		= name
 all:	$(NAME)
 
 $(NAME): $(SRC_OBJ)
-	@ $(MAKE) -C ./lib/ --no-print-directory
-	@ $(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
+	$(MAKE) -C ./lib/ --no-print-directory
+	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
 
 clean:
-	@ find . -type f -name "*.gcno" -delete
-	@ find . -type f -name "*.gcda" -delete
-	@ find . -type f -name "*~" -delete
-	@ find . -type f -name "*#" -delete
-	@ find ./src/ -type f -name "*.o" -delete
+	find . -type f -name "*.gcno" -delete
+	find . -type f -name "*.gcda" -delete
+	find . -type f -name "*~" -delete
+	find . -type f -name "*#" -delete
+	find ./src/ -type f -name "*.o" -delete
 
 fclean:	clean
-	@ rm -f $(NAME)
-	@ rm -f $(TESTS_NAME)
-	@ $(MAKE) -C ./lib/ fclean --no-print-directory
+	rm -f $(NAME)
+	rm -f $(TESTS_NAME)
+	$(MAKE) -C ./lib/ fclean --no-print-directory
 
 re:	fclean all
 
-run: all
-	@ ./$(NAME)
-
 #----- TESTS -----#
 unit_tests: re
-	@ $(CC) -o $(TESTS_NAME) $(TEST_LIB) $(TEST_SRC) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
+	$(CC) -o $(TESTS_NAME) $(filter-out ./src/main.c, $(SRC)) $(LIB) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
 
 test_run: unit_tests
-	@ ./$(TESTS_NAME)
+	./$(TESTS_NAME)
 
 gcovr_run: test_run
-	@ gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
+	gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
+
+#----- BONUS -----#
+run: all
+	./$(NAME)
 
 epiclean:
-	@ rm -f $(EPIC_BIN)
-	@ find . -type f -name "*.pch" -delete
+	rm -f $(EPIC_BIN)
+	find . -type f -name "*.pch" -delete
 
 style_check:
-	@ epiclang -o $(EPIC_BIN) $(SRC) $(LIB) $(CPPFLAGS)
-	@ echo "[Epiclang Done]"
-	@ $(MAKE) epiclean --no-print-directory
+	epiclang -o $(EPIC_BIN) $(SRC) $(LIB) $(CPPFLAGS)
+	echo "[Epiclang Done]"
+	$(MAKE) epiclean --no-print-directory
 
 debug: CFLAGS += "-g3"
 debug: re
 
-.SILENT: $(SRC_OBJ)
+.SILENT: $(SRC_OBJ) $(NAME) clean fclean re unit_tests test_run gcovr_run run epiclean style_check
 .PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check debug

@@ -17,7 +17,7 @@ char *str_dup(char const *str)
     str_dup = malloc(sizeof(char) * (len + 1));
     if (!str_dup)
         return NULL;
-    for (int i = 0; i <= len; i++)
+    for (unsigned i = 0; i <= len; i++)
         str_dup[i] = str[i];
     return str_dup;
 }
