@@ -14,8 +14,6 @@ SRC		:= $(shell find ./src/ -type f -name "*.c")
 
 SRC_OBJ	 = $(SRC:.c=.o)
 
-# TESTS	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
@@ -31,9 +29,9 @@ CRIT 	= "--coverage" "-lcriterion"
 CC = "clang"
 
 # NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-TESTS_NAME 	= "unit_tests"
+TEST_NAME 	= "unit_tests"
 
-EPIC_BIN	= "epic_bin"
+EPIC_NAME	= "epic_bin"
 
 NAME 		= name
 
@@ -46,7 +44,7 @@ $(NAME): $(SRC_OBJ)
 	$(MAKE) -C ./lib/ --no-print-directory
 	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
 
-clean:
+clean: epiclean
 	find . -type f -name "*.gcno" -delete
 	find . -type f -name "*.gcda" -delete
 	find . -type f -name "*~" -delete
@@ -54,18 +52,17 @@ clean:
 	find ./src/ -type f -name "*.o" -delete
 
 fclean:	clean
-	rm -f $(NAME)
-	rm -f $(TESTS_NAME)
+	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C ./lib/ fclean --no-print-directory
 
 re:	fclean all
 
 #----- TESTS -----#
-unit_tests: re
-	$(CC) -o $(TESTS_NAME) $(filter-out ./src/main.c, $(SRC)) $(LIB) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
+unit_tests: fclean
+	$(CC) -o $(TEST_NAME) $(filter-out ./src/main.c, $(SRC)) $(LIB) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
 
 test_run: unit_tests
-	./$(TESTS_NAME)
+	./$(TEST_NAME)
 
 gcovr_run: test_run
 	gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
@@ -75,11 +72,11 @@ run: all
 	./$(NAME)
 
 epiclean:
-	rm -f $(EPIC_BIN)
+	rm -f $(EPIC_NAME)
 	find . -type f -name "*.pch" -delete
 
 style_check:
-	epiclang -o $(EPIC_BIN) $(SRC) $(LIB) $(CPPFLAGS)
+	epiclang -o $(EPIC_NAME) $(SRC) $(LIB) $(CPPFLAGS)
 	echo "[Epiclang Done]"
 	$(MAKE) epiclean --no-print-directory
 
