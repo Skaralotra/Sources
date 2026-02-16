@@ -12,4 +12,7 @@
     #define ERROR_CODE (84)
     #define STR_END (0)
 
+typedef long int ssize_t;
+typedef long unsigned size_t;
+
 #endif //DEFINE_H

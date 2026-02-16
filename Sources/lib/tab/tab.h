@@ -17,6 +17,7 @@
 //---PROTOTYPES---//
 int tab_len(void const *const *tab);
 int dprint_ctab(int fd, char const *const *tab);
+int print_ctab(char const *const *tab);
 void free_tab(void **tab);
 
 #endif //LIB_TAB_H

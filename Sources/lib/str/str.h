@@ -15,15 +15,18 @@
 
 //---DEFINES---//
     #define STR_END (0)
+    #define LOW_DIFF ('a' - 'A')
+    #define IS_LETTER(cha) ('a' <= LOWER(cha) && LOWER(cha) <= 'z' ? 1 : 0)
+    #define LOWER(cha) ('A' <= cha && cha <= 'Z' ? (char)(cha + LOW_DIFF) : cha)
 
 //---TYPES---//
 
 //---PROTOTYPES---//
 // print.c
-int print_str(char const *str);
-int dprint_str(int fd, char const *str);
-int print_char(char c);
-int dprint_char(int fd, char c);
+ssize_t print_str(char const *str);
+ssize_t dprint_str(int fd, char const *str);
+ssize_t print_char(char c);
+ssize_t dprint_char(int fd, char c);
 // str_len.c
 int str_len(char const *str);
 // str_dup.c

@@ -15,19 +15,21 @@
     #define IS_NUM(character) ('0' <= character && character <= '9' ? 1 : 0)
 
 //---TYPES---//
+typedef long int ssize_t;
+typedef long unsigned size_t;
 
 //---PROTOTYPES---//
 // print_num.c
-int print_num(int nb);
-int dprint_num(int fd, int nb);
-int print_base(int nb, int base);
-int dprint_base(int fd, int nb, int base);
+ssize_t print_num(int nb);
+ssize_t dprint_num(int fd, int nb);
+ssize_t print_base(int nb, int base);
+ssize_t dprint_base(int fd, int nb, int base);
 // num_len.c
-int num_len(int nb);
+size_t num_len(int nb);
 // convert_str.c
-int convert_str(char const *str);
+long convert_str(char const *str);
 // power.c
-int power(int nb, int p);
+long unsigned power(int nb, int p);
 
 //### INTERNAL COMPONENTS ###//
 

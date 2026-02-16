@@ -7,9 +7,9 @@
 
 #include "num.h"
 
-int nbr_len(int nb)
+size_t nbr_len(int nb)
 {
-    int len = 0;
+    size_t len = 0;
 
     if (nb < 0) {
         nb *= -1;

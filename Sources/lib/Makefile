@@ -13,10 +13,9 @@ LIB_OBJ	 = $(LIB:.c=.o)
 LIB_NAME = libmy.a
 
 #----- FLAG -----#
-CFLAGS = "-Wall" "-g3"
+CFLAGS = "-Wall" "-Wextra" "-g3"
 
-CPPFLAGS = "-I./include/"
-CPPFLAGS += $(shell find . -mindepth 1 -type d -printf "-I./%f/ ")
+CPPFLAGS = "-I./include/" $(shell find . -mindepth 1 -type d -printf "-I./%f/ ")
 
 # RULES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -24,15 +23,15 @@ CPPFLAGS += $(shell find . -mindepth 1 -type d -printf "-I./%f/ ")
 all:	$(LIB_NAME)
 
 $(LIB_NAME): $(LIB_OBJ)
-	@ $(AR) rc $(LIB_NAME) $(LIB_OBJ)
+	$(AR) rc $(LIB_NAME) $(LIB_OBJ)
 
 clean:
-	@ find . -type f -name "*.o" -delete
+	find . -type f -name "*.o" -delete
 
 fclean:	clean
-	@rm -f $(LIB_NAME)
+	rm -f $(LIB_NAME)
 
 re:	fclean all
 
-.SILENT: $(LIB_OBJ)
-.PHONY: all clean fclean re run unit_tests test_run gcovr_run style_check
+.SILENT: all clean fclean re $(LIB_NAME) $(LIB_OBJ)
+.PHONY: all clean fclean re

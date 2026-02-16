@@ -18,30 +18,35 @@ static const print_type_t TYPES[] = {
     {0, NULL}
 };
 
-static int call_type(int const fd, char const type, void const *arg)
+static ssize_t call_type(int const fd, char const type, void const *arg)
 {
     for (int i = 0; TYPES[i].type; i++)
         if (type == TYPES[i].type)
             return TYPES[i].func(fd, arg);
-    return (int)write(fd, &type, 1);
+    return write(fd, &type, 1);
 }
 
-int dprint(int const fd, char const *format, void const *args[])
+ssize_t dprint(int const fd, char const *format, void const *args[])
 {
-    int char_total = 0;
-    int used_args = 0;
+    ssize_t total_size = 0;
+    ssize_t size = 0;
+    int arg_i = 0;
 
-    for (int i = 0; format[i]; i++)
+    for (int i = 0; format[i]; i++) {
         if (format[i] == '%') {
-            char_total += call_type(fd, format[i + 1], args[used_args]);
-            used_args++;
+            size = call_type(fd, format[i + 1], args[arg_i]);
+            arg_i++;
             i++;
         } else
-            char_total += (int)write(fd, &format[i], 1);
-    return char_total;
+            size = write(fd, &format[i], 1);
+        if (size == -1)
+            return -1;
+        total_size += size;
+    }
+    return total_size;
 }
 
-int print(char const *format, void const *args[])
+ssize_t print(char const *format, void const *args[])
 {
     return dprint(1, format, args);
 }

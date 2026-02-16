@@ -7,7 +7,7 @@
 
 #include "num.h"
 
-int power(int const nb, int const p)
+long unsigned power(int const nb, int const p)
 {
     if (p == 0)
         return 1;

@@ -7,33 +7,36 @@
 
 #include "num.h"
 
-int dprint_base(int const fd, int nb, int const base)
+ssize_t dprint_base(int const fd, int nb, int const base)
 {
-    char digit_list[] = "0123456789abcdefghijklmnopqrstuvwxyz";
-    int len = 0;
+    char char_list[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+    ssize_t total_size = 0;
+    ssize_t size = 0;
 
     if (base < 2 || base > 36)
         return 0;
     if (nb < 0) {
-        len += (int)write(fd, "-", 1);
+        size = write(fd, "-", 1);
         nb *= -1;
     }
     if (nb >= base)
-        len += dprint_base(fd, nb / base, base);
-    return len + (int)write(fd, &digit_list[nb % base], 1);
+        total_size = dprint_base(fd, nb / base, base);
+    if (total_size < 0 || size < 0 || write(fd, &char_list[nb % base], 1) < 0)
+        return -1;
+    return total_size + size + 1;
 }
 
-int print_base(int const nb, int const base)
+ssize_t print_base(int const nb, int const base)
 {
     return dprint_base(1, nb, base);
 }
 
-int dprint_num(int const fd, int const nb)
+ssize_t dprint_num(int const fd, int const nb)
 {
     return dprint_base(fd, nb, 10);
 }
 
-int print_num(int const nb)
+ssize_t print_num(int const nb)
 {
     return dprint_base(1, nb, 10);
 }

@@ -11,7 +11,7 @@
 
 int main(int const argc, char *argv[])
 {
-    if (print("%s %s\n", (ARGS){"Hello", "Word"}) == 12)
+    if (print("argc : %d, argv : %t\n", (args_t){&argc, argv}) == 11)
         return call_error("Error Message", ERROR_DATA);
     return SUCCESS_CODE;
 }

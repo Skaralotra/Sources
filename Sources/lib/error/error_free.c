@@ -7,19 +7,22 @@
 
 #include "error.h"
 
-int error_free(free_array_t free_array[])
+int error_free(size_t const size, free_array_t const free_array[])
 {
     bool failed_batch = false;
 
     if (!free_array)
         return ERROR_CODE;
-    for (int i = 0; free_array[i].function; i++)
+    for (size_t i = 0; i < size; i++)
         if (free_array[i].condition)
             failed_batch = true;
     if (!failed_batch)
         return SUCCESS_CODE;
-    for (int i = 0; free_array[i].function; i++)
+    for (size_t i = 0; i < size; i++) {
+        if (!free_array[i].func)
+            continue;
         if (!free_array[i].condition)
-            free_array[i].function(free_array[i].variable);
+            free_array[i].func(free_array[i].var);
+    }
     return ERROR_CODE;
 }

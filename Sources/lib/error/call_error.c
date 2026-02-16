@@ -8,11 +8,34 @@
 #include "error.h"
 #include "print.h"
 
-int call_error(char const *message, error_data_t const data[])
+static void print_error(char const *message, error_data_t const data[])
 {
     dprint(2, "- - - ERROR - - -\n"
         "%s|%s:%d Caught Error : %s\n"
         "- - - - - - - - -\n",
-        (ARGS){data->file, data->func, &data->line, message});
+        (args_t){data->file, data->func, &data->line, message});
+}
+
+int call_error(char const *message, error_data_t const data[])
+{
+    print_error(message, data);
     return ERROR_CODE;
+}
+
+int call_ierror(int const code, char const *message, error_data_t const data[])
+{
+    print_error(message, data);
+    return code;
+}
+
+void *call_nerror(char const *message, error_data_t const data[])
+{
+    print_error(message, data);
+    return NULL;
+}
+
+void call_warning(char const *message, error_data_t const data[])
+{
+    dprint(2, "%s|%s:%d Warning : %s\n", (args_t)
+        {data->file, data->func, &data->line, message});
 }

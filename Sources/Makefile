@@ -17,7 +17,7 @@ SRC_OBJ	 = $(SRC:.c=.o)
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
-CFLAGS = "-Wall" "-Wextra"
+CFLAGS = "-Wall" "-Wextra" "-g3"
 
 CPPFLAGS := "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
@@ -69,7 +69,7 @@ gcovr_run: test_run
 
 #----- BONUS -----#
 run: all
-	./$(NAME)
+	./$(NAME) $(ARGS)
 
 epiclean:
 	rm -f $(EPIC_NAME)
@@ -79,9 +79,6 @@ style_check:
 	epiclang -o $(EPIC_NAME) $(SRC) $(LIB) $(CPPFLAGS)
 	echo "[Epiclang Done]"
 	$(MAKE) epiclean --no-print-directory
-
-debug: CFLAGS += "-g3"
-debug: re
 
 .SILENT: $(SRC_OBJ) $(NAME) clean fclean re unit_tests test_run gcovr_run run epiclean style_check
 .PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check debug
