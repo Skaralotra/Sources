@@ -22,8 +22,10 @@ static ssize_t call_type(
     int const fd, char const type, int *arg_i, void const *args[])
 {
     for (int i = 0; TYPES[i].type; i++)
-        if (type == TYPES[i].type)
-            return TYPES[i].func(fd, args[(*arg_i)++]);
+        if (type == TYPES[i].type) {
+            (*arg_i)++;
+            return TYPES[i].func(fd, args[(*arg_i) - 1]);
+        }
     return write(fd, &type, 1);
 }
 
@@ -34,9 +36,10 @@ ssize_t dprint(int const fd, char const *format, void const *args[])
     int arg_i = 0;
 
     for (int i = 0; format[i]; i++) {
-        if (format[i] == '%')
-            size = call_type(fd, format[++i], &arg_i, args);
-        else
+        if (format[i] == '%') {
+            i++;
+            size = call_type(fd, format[i], &arg_i, args);
+        } else
             size = write(fd, &format[i], 1);
         if (size == -1)
             return -1;
