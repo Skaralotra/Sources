@@ -23,6 +23,8 @@
 //---DEFINES---//
 
 //---TYPES---//
+typedef long int ssize_t;
+typedef long unsigned size_t;
 typedef void const *args_t[];
 
 //---PROTOTYPES---//

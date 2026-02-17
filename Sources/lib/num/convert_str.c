@@ -17,6 +17,6 @@ long convert_str(char const *str)
         if (IS_NUM(str[i]))
             nbr = (nbr * 10) + (str[i] - '0');
     if (str[0] == '-')
-        nbr *= -1;
+        nbr = -nbr;
     return nbr;
 }

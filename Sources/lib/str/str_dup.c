@@ -10,12 +10,9 @@
 char *str_dup(char const *str)
 {
     unsigned const len = str_len(str);
-    char *str_dup;
+    char *str_dup = malloc(sizeof(char) * (len + 1));
 
-    if (!str)
-        return NULL;
-    str_dup = malloc(sizeof(char) * (len + 1));
-    if (!str_dup)
+    if (!str || !str_dup)
         return NULL;
     for (unsigned i = 0; i <= len; i++)
         str_dup[i] = str[i];

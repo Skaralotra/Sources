@@ -17,7 +17,7 @@ ssize_t dprint_base(int const fd, int nb, int const base)
         return 0;
     if (nb < 0) {
         size = write(fd, "-", 1);
-        nb *= -1;
+        nb = -nb;
     }
     if (nb >= base)
         total_size = dprint_base(fd, nb / base, base);

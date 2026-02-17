@@ -13,11 +13,16 @@
 //---DEFINES---//
 
 //---TYPES---//
+typedef long int ssize_t;
+typedef long unsigned size_t;
 
 //---PROTOTYPES---//
-int tab_len(void const *const *tab);
-int dprint_ctab(int fd, char const *const *tab);
-int print_ctab(char const *const *tab);
-void free_tab(void **tab);
+// tab_len.c
+ssize_t ctab_len(char const *const *tab);
+// print_tab.c
+ssize_t dprint_ctab(int fd, char const *const *tab);
+ssize_t print_ctab(char const *const *tab);
+// free_tab.c
+void free_ctab(char **tab);
 
 #endif //LIB_TAB_H

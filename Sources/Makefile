@@ -80,5 +80,5 @@ style_check:
 	echo "[Epiclang Done]"
 	$(MAKE) epiclean --no-print-directory
 
-.SILENT: $(SRC_OBJ) $(NAME) clean fclean re unit_tests test_run gcovr_run run epiclean style_check
-.PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check debug
+.SILENT: $(SRC_OBJ) $(NAME) all clean fclean re unit_tests test_run gcovr_run run epiclean style_check
+.PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check

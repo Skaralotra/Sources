@@ -33,5 +33,5 @@ fclean:	clean
 
 re:	fclean all
 
-.SILENT: all clean fclean re $(LIB_NAME) $(LIB_OBJ)
+.SILENT: $(LIB_NAME) $(LIB_OBJ) all clean fclean re
 .PHONY: all clean fclean re

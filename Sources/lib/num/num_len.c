@@ -7,12 +7,12 @@
 
 #include "num.h"
 
-size_t nbr_len(int nb)
+size_t num_len(int nb)
 {
     size_t len = 0;
 
     if (nb < 0) {
-        nb *= -1;
+        nb = -nb;
         len++;
     }
     for (; nb; len++)

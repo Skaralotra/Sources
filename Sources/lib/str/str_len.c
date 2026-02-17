@@ -7,7 +7,7 @@
 
 #include "str.h"
 
-int str_len(char const *str)
+size_t str_len(char const *str)
 {
     int len = 0;
 

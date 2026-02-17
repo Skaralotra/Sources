@@ -8,7 +8,7 @@
 #include "str.h"
 #include "tab.h"
 
-void free_tab(void **tab)
+void free_ctab(char **tab)
 {
     if (!tab)
         return;

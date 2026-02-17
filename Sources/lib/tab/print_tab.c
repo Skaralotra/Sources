@@ -8,21 +8,28 @@
 #include "str.h"
 #include "tab.h"
 
-int dprint_ctab(int const fd, char const *const *tab)
+ssize_t dprint_ctab(int const fd, char const *const *tab)
 {
-    int char_total = 0;
+    ssize_t total_size = 0;
+    ssize_t size = 0;
+    ssize_t separ = 0;
 
     if (!tab)
         return dprint_str(fd, "(null)");
     for (int i = 0; tab[i]; i++) {
-        char_total += dprint_str(fd, tab[i]);
+        size = dprint_str(fd, tab[i]);
         if (tab[i + 1])
-            char_total += dprint_str(fd, ", ");
+            separ = dprint_str(fd, ", ");
+        else
+            separ = 0;
+        if (size < 0 || separ < 0)
+            return -1;
+        total_size += size + separ;
     }
-    return char_total;
+    return total_size;
 }
 
-int print_ctab(char const *const *tab)
+ssize_t print_ctab(char const *const *tab)
 {
     return dprint_ctab(1, tab);
 }

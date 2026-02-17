@@ -29,7 +29,7 @@ size_t num_len(int nb);
 // convert_str.c
 long convert_str(char const *str);
 // power.c
-long unsigned power(int nb, int p);
+long power(int nb, int p);
 
 //### INTERNAL COMPONENTS ###//
 
