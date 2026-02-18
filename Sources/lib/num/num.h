@@ -20,10 +20,10 @@ typedef long unsigned size_t;
 
 //---PROTOTYPES---//
 // print_num.c
-ssize_t print_num(int nb);
-ssize_t dprint_num(int fd, int nb);
-ssize_t print_base(int nb, int base);
-ssize_t dprint_base(int fd, int nb, int base);
+ssize_t print_num(long long nb);
+ssize_t dprint_num(int fd, long long nb);
+ssize_t print_base(long long nb, int base);
+ssize_t dprint_base(int fd, long long nb, int base);
 // num_len.c
 size_t num_len(int nb);
 // convert_str.c

@@ -5,7 +5,7 @@
 ** <description>
 */
 
-#ifndef TYPEDEF_H_
-    #define TYPEDEF_H_
+#ifndef TYPEDEF_H
+    #define TYPEDEF_H
 
-#endif //TYPEDEF_H_
+#endif //TYPEDEF_H

@@ -76,3 +76,9 @@ Test(print, invalid_type, .init = redirect_all_std)
     cr_assert_eq(print("None : %l\n", (args_t){}), 9);
     cr_assert_stdout_eq_str("None : l\n");
 }
+
+Test(print, null_format, .init = redirect_all_std)
+{
+    cr_assert_eq(print(NULL, NULL), 6);
+    cr_assert_stdout_eq_str("(null)");
+}

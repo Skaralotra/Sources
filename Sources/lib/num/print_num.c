@@ -7,7 +7,7 @@
 
 #include "num.h"
 
-ssize_t dprint_base(int const fd, int nb, int const base)
+ssize_t dprint_base(int const fd, long long nb, int const base)
 {
     char char_list[] = "0123456789abcdefghijklmnopqrstuvwxyz";
     ssize_t total_size = 0;
@@ -26,17 +26,17 @@ ssize_t dprint_base(int const fd, int nb, int const base)
     return total_size + size + 1;
 }
 
-ssize_t print_base(int const nb, int const base)
+ssize_t print_base(long long const nb, int const base)
 {
     return dprint_base(1, nb, base);
 }
 
-ssize_t dprint_num(int const fd, int const nb)
+ssize_t dprint_num(int const fd, long long const nb)
 {
     return dprint_base(fd, nb, 10);
 }
 
-ssize_t print_num(int const nb)
+ssize_t print_num(long long const nb)
 {
     return dprint_base(1, nb, 10);
 }

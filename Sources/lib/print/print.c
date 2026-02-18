@@ -6,6 +6,7 @@
 */
 
 #include "print.h"
+#include "str.h"
 
 static const print_type_t TYPES[] = {
     {'d', &type_decimal},
@@ -35,6 +36,8 @@ ssize_t dprint(int const fd, char const *format, void const *args[])
     ssize_t size = 0;
     int arg_i = 0;
 
+    if (!format)
+        return print_str("(null)");
     for (int i = 0; format[i]; i++) {
         if (format[i] == '%') {
             i++;

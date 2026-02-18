@@ -14,8 +14,8 @@
 
 *** Syntax Example **/
 
-#ifndef MY_PRINT_H
-    #define MY_PRINT_H
+#ifndef LIB_PRINT_H
+    #define LIB_PRINT_H
 
 //---IMPORTS---//
     #include <unistd.h>
@@ -47,4 +47,4 @@ ssize_t type_hexa(int fd, void const *argument);
 ssize_t type_octal(int fd, void const *argument);
 ssize_t type_binary(int fd, void const *argument);
 
-#endif //MY_PRINT_H
+#endif //LIB_PRINT_H
