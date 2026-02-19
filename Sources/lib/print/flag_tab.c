@@ -10,5 +10,5 @@
 
 ssize_t type_char_tab(int const fd, void const *argument)
 {
-    return dprint_ctab(fd, argument);
+    return dprint_ctab(fd, *(char const ***)argument);
 }

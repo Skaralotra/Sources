@@ -12,9 +12,10 @@
 
 int main(int const argc, char *argv[])
 {
-    int var = is_numerical("-123");
+    char str[] = "Hello";
 
-    if (print("argc : %d, argv : %t, is_num : %d\n", (args_t){&argc, argv, &var}) == 11)
+    if (print("argc : %d, argv : %t, str : %s\n", (args_t){&argc, &argv, &str}) == 11)
         return call_error("Error Message", ERROR_DATA);
+
     return SUCCESS_CODE;
 }
