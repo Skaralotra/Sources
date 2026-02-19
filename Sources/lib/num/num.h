@@ -10,6 +10,7 @@
 
 //---IMPORTS---//
     #include <unistd.h>
+    #include <stdbool.h>
 
 //---DEFINES---//
     #define IS_NUM(character) ('0' <= character && character <= '9' ? 1 : 0)
@@ -28,6 +29,8 @@ ssize_t dprint_base(int fd, long long nb, int base);
 size_t num_len(int nb);
 // convert_str.c
 long convert_str(char const *str);
+// is_numerical.c
+bool is_numerical(char const *str);
 // power.c
 long power(int nb, int p);
 
