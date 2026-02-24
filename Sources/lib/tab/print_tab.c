@@ -5,8 +5,8 @@
 ** <description>
 */
 
-#include "str.h"
 #include "tab.h"
+#include "str.h"
 
 ssize_t dprint_ctab(int const fd, char const *const *tab)
 {

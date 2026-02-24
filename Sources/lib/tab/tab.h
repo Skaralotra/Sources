@@ -9,6 +9,7 @@
     #define LIB_TAB_H
 
 //---IMPORTS---//
+    #include <stdlib.h>
 
 //---DEFINES---//
 
@@ -24,5 +25,7 @@ ssize_t dprint_ctab(int fd, char const *const *tab);
 ssize_t print_ctab(char const *const *tab);
 // free_tab.c
 void free_ctab(char **tab);
+// resize_tab.c
+char **resize_ctab(char **tab, size_t const new_size);
 
 #endif //LIB_TAB_H

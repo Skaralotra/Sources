@@ -8,16 +8,10 @@
 #include "define.h"
 #include "print.h"
 #include "error.h"
-#include "num.h"
-#include "str.h"
 
-int main(int const argc, char *argv[])
+int main(int const argc, char const * const argv[])
 {
-    char *str = str_dup("Hello World");
-
-    if (print("argc : %d, argv : %t, str : %s\n", (args_t){&argc, argv, str}) == 11)
+    if (print("argc : %d, argv : %t\n", (args_t){&argc, argv}) == 30)
         return call_error("Error Message", ERROR_DATA);
-
-    free(str);
     return SUCCESS_CODE;
 }

@@ -5,7 +5,6 @@
 ** <description>
 */
 
-#include "str.h"
 #include "tab.h"
 
 void free_ctab(char **tab)

@@ -28,7 +28,7 @@ $(LIB_NAME): $(LIB_OBJ)
 clean:
 	find . -type f -name "*.o" -delete
 
-fclean:	clean
+fclean:
 	rm -f $(LIB_NAME)
 
 re:	fclean all

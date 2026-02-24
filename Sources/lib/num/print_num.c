@@ -9,7 +9,7 @@
 
 ssize_t dprint_base(int const fd, long long nb, int const base)
 {
-    char char_list[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+    char const char_list[] = "0123456789abcdefghijklmnopqrstuvwxyz";
     ssize_t total_size = 0;
     ssize_t size = 0;
 

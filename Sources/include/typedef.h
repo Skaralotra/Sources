@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** typedef.h
+** <project name>
 ** File description:
 ** <description>
 */

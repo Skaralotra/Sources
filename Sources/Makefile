@@ -19,7 +19,7 @@ SRC_OBJ	 = $(SRC:.c=.o)
 #----- FLAGS -----#
 CFLAGS = "-Wall" "-Wextra" "-g3"
 
-CPPFLAGS := "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
+CPPFLAGS = "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
 LDFLAGS = "-L./lib/"
 LDLIBS	= "-lmy"
@@ -41,7 +41,7 @@ NAME 		= name
 all:	$(NAME)
 
 $(NAME): $(SRC_OBJ)
-	$(MAKE) -C ./lib/ --no-print-directory
+	$(MAKE) -C./lib/ --no-print-directory
 	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
 
 clean: epiclean
@@ -50,10 +50,11 @@ clean: epiclean
 	find . -type f -name "*~" -delete
 	find . -type f -name "*#" -delete
 	find ./src/ -type f -name "*.o" -delete
+	$(MAKE) -C./lib/ clean --no-print-directory
 
 fclean:	clean
 	rm -f $(NAME) $(TEST_NAME)
-	$(MAKE) -C ./lib/ fclean --no-print-directory
+	$(MAKE) -C./lib/ fclean --no-print-directory
 
 re:	fclean all
 

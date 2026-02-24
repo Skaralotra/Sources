@@ -13,7 +13,7 @@
     #include <stdbool.h>
 
 //---DEFINES---//
-    #define IS_NUM(character) ('0' <= character && character <= '9' ? 1 : 0)
+    #define IS_NUM(character) ('0' <= character && character <= '9')
 
 //---TYPES---//
 typedef long int ssize_t;

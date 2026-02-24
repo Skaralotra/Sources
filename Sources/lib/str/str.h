@@ -16,7 +16,7 @@
 //---DEFINES---//
     #define STR_END (0)
     #define LOW_DIFF ('a' - 'A')
-    #define IS_LETTER(cha) ('a' <= LOWER(cha) && LOWER(cha) <= 'z' ? 1 : 0)
+    #define IS_LETTER(cha) ('a' <= LOWER(cha) && LOWER(cha) <= 'z')
     #define LOWER(cha) ('A' <= cha && cha <= 'Z' ? (char)(cha + LOW_DIFF) : cha)
 
 //---TYPES---//
@@ -37,6 +37,8 @@ char *str_dup(char const *str);
 char *concat_str(char const *str1, char const *str2);
 // str_identical.c
 bool str_identical(char const *str1, char const *str2);
+// check_format.c
+//bool check_format(char const *format, char const *str);
 
 //### INTERNAL COMPONENTS ###//
 
