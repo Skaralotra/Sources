@@ -10,8 +10,8 @@
 
 cslab_t append_ctab(cslab_t tab, char **elements)
 {
-    size_t tab_len = ctab_len((char const *const *)tab);
-    size_t elem_len = ctab_len((char const *const *)elements);
+    size_t const tab_len = ctab_len((char const *const *)tab);
+    size_t const elem_len = ctab_len((char const *const *)elements);
 
     if (tab_len + elem_len > MAX_SIZE(tab_len))
         tab = resize_ctab(tab, MAX_SIZE(tab_len + elem_len));

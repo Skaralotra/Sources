@@ -7,7 +7,7 @@
 
 /** Syntax Example ***
 
-    char **tab = create_auto_ctab();
+    cslab_t tab = create_cslab();
 
     tab = append_ctab(tab, (char *[]){"Hello", "World", NULL});
 
@@ -20,8 +20,8 @@
     #include <stdlib.h>
 
 //---DEFINES---//
-    #define ALLOC_SIZE (25)
-    #define ROUND(value) (((value) % ALLOC_SIZE) != 0)
+    #define ALLOC_SIZE (3)
+    #define ROUND(value) (((value) % ALLOC_SIZE) != 0 || !(value))
     #define MAX_SIZE(value) (((value) / ALLOC_SIZE + ROUND(value)) * ALLOC_SIZE)
 
 //---TYPES---//

@@ -9,13 +9,7 @@
 #include <criterion/redirect.h>
 #include "print.h"
 
-static void redirect_all_std(void)
-{
-    cr_redirect_stdout();
-    cr_redirect_stderr();
-}
-
-Test(print, char_type, .init = redirect_all_std)
+Test(print, char_type, .init = cr_redirect_stdout)
 {
     char const chara = 'A';
 
@@ -23,7 +17,7 @@ Test(print, char_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("Chara : A\n");
 }
 
-Test(print, str_type, .init = redirect_all_std)
+Test(print, str_type, .init = cr_redirect_stdout)
 {
     char const *str = "Hello World";
 
@@ -31,7 +25,7 @@ Test(print, str_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("String : Hello World\n");
 }
 
-Test(print, decimal_type, .init = redirect_all_std)
+Test(print, decimal_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
@@ -39,7 +33,7 @@ Test(print, decimal_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("Decimal : 125\n");
 }
 
-Test(print, hexa_type, .init = redirect_all_std)
+Test(print, hexa_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
@@ -47,7 +41,7 @@ Test(print, hexa_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("Hexa : 7d\n");
 }
 
-Test(print, octal_type, .init = redirect_all_std)
+Test(print, octal_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
@@ -55,7 +49,7 @@ Test(print, octal_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("Octal : 175\n");
 }
 
-Test(print, binary_type, .init = redirect_all_std)
+Test(print, binary_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
@@ -63,7 +57,7 @@ Test(print, binary_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("Binary : 1111101\n");
 }
 
-Test(print, tab_char_type, .init = redirect_all_std)
+Test(print, tab_char_type, .init = cr_redirect_stdout)
 {
     char const *tab[] = {"Hello", "World", "Puppy", NULL};
 
@@ -71,13 +65,13 @@ Test(print, tab_char_type, .init = redirect_all_std)
     cr_assert_stdout_eq_str("TabChar : Hello, World, Puppy\n");
 }
 
-Test(print, invalid_type, .init = redirect_all_std)
+Test(print, invalid_type, .init = cr_redirect_stdout)
 {
     cr_assert_eq(print("None : %l\n", (args_t){}), 9);
     cr_assert_stdout_eq_str("None : l\n");
 }
 
-Test(print, null_format, .init = redirect_all_std)
+Test(print, null_format, .init = cr_redirect_stdout)
 {
     cr_assert_eq(print(NULL, NULL), 6);
     cr_assert_stdout_eq_str("(null)");
