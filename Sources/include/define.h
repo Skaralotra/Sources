@@ -13,7 +13,6 @@
 //---DEFINES---//
     #define SUCCESS_CODE (0)
     #define ERROR_CODE (84)
-    #define STR_END ('\0')
 
 //---TYPES---//
 typedef long int ssize_t;

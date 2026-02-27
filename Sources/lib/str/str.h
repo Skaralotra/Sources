@@ -14,7 +14,7 @@
     #include <stdbool.h>
 
 //---DEFINES---//
-    #define STR_END (0)
+    #define STR_END ('\0')
     #define LOW_DIFF ('a' - 'A')
     #define IS_LETTER(cha) ('a' <= LOWER(cha) && LOWER(cha) <= 'z')
     #define LOWER(cha) ('A' <= cha && cha <= 'Z' ? (char)(cha + LOW_DIFF) : cha)

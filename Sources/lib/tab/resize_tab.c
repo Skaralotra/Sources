@@ -5,6 +5,7 @@
 ** <description>
 */
 
+#include "print.h"
 #include "tab.h"
 
 char **resize_ctab(char **tab, size_t const new_size)
