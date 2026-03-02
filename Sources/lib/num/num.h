@@ -27,12 +27,12 @@ ssize_t print_base(long long nb, int base);
 ssize_t dprint_base(int fd, long long nb, int base);
 // num_len.c
 size_t num_len(int nb);
-// convert_str.c
-long convert_str(char const *str);
+// get_num.c
+ssize_t get_num(char const *str);
 // is_numerical.c
 bool is_numerical(char const *str);
 // power.c
-long power(int nb, int p);
+ssize_t power(ssize_t const nb, ssize_t const p);
 
 //### INTERNAL COMPONENTS ###//
 

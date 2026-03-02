@@ -7,7 +7,7 @@
 
 #include "num.h"
 
-long power(int const nb, int const p)
+ssize_t power(ssize_t const nb, ssize_t const p)
 {
     if (p == 0)
         return 1;
