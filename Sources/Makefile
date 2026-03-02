@@ -45,16 +45,16 @@ $(NAME): $(SRC_OBJ)
 	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
 
 clean: epiclean
+	$(MAKE) -C./lib/ clean --no-print-directory
 	find . -type f -name "*.gcno" -delete
 	find . -type f -name "*.gcda" -delete
 	find . -type f -name "*~" -delete
 	find . -type f -name "*#" -delete
 	find ./src/ -type f -name "*.o" -delete
-	$(MAKE) -C./lib/ clean --no-print-directory
 
 fclean:	clean
-	rm -f $(NAME) $(TEST_NAME)
 	$(MAKE) -C./lib/ fclean --no-print-directory
+	rm -f $(NAME) $(TEST_NAME)
 
 re:	fclean all
 
@@ -81,5 +81,8 @@ style_check:
 	echo "[Epiclang Done]"
 	$(MAKE) epiclean --no-print-directory
 
-.SILENT: $(SRC_OBJ) $(NAME) all clean fclean re unit_tests test_run gcovr_run run epiclean style_check
-.PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check
+valgrind: re
+	valgrind ./$(NAME) $(ARGS)
+
+.SILENT: $(SRC_OBJ) $(NAME) all clean fclean re unit_tests test_run gcovr_run run epiclean style_check valgrind
+.PHONY: all clean fclean re run unit_tests test_run gcovr_run epiclean style_check valgrind
