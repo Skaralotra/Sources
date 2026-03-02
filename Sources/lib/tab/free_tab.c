@@ -7,11 +7,11 @@
 
 #include "tab.h"
 
-void free_ctab(char **tab)
+void free_tab(void *tab)
 {
     if (!tab)
         return;
-    for (int i = 0; tab[i]; i++)
-        free(tab[i]);
+    for (int i = 0; ((void **)tab)[i]; i++)
+        free(((void **)tab)[i]);
     free(tab);
 }

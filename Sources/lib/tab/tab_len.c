@@ -7,12 +7,12 @@
 
 #include "tab.h"
 
-ssize_t ctab_len(char const *const *tab)
+ssize_t tab_len(void *tab)
 {
     ssize_t len = 0;
 
     if (!tab)
         return 0;
-    for (; tab[len]; len++);
+    for (; ((void **)tab)[len]; len++);
     return len;
 }

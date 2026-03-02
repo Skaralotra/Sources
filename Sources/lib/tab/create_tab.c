@@ -7,9 +7,9 @@
 
 #include "tab.h"
 
-char **create_ctab(size_t const size)
+void *create_tab(size_t const size)
 {
-    char **tab = malloc(sizeof(char *) * (size + 1));
+    void **tab = malloc(sizeof(void *) * (size + 1));
 
     if (!tab)
         return NULL;
@@ -17,12 +17,12 @@ char **create_ctab(size_t const size)
     return tab;
 }
 
-cslab_t create_cslab(void)
+void *create_slab(void)
 {
-    cslab_t tab = malloc(sizeof(char *) * (ALLOC_SIZE + 1));
+    void **tab = malloc(sizeof(void *) * (ALLOC_SIZE + 1));
 
     if (!tab)
         return NULL;
-    *tab = NULL;
+    tab[0] = NULL;
     return tab;
 }
