@@ -8,10 +8,10 @@
 /** Syntax Example ***
 
 if (error_free(3, (free_array_t []){
-    {!array1, array1, &free},
-    {!array2, array2, &free},
-    {!array3, array3, &free}}))
-    return call_error("error message", ERROR_DATA);
+        {array1, &free},
+        {array2, &free},
+        {array3, &free}}))
+        return call_error("Error Message", ERROR_DATA);
 
 *** Syntax Example **/
 
@@ -37,7 +37,6 @@ typedef struct error_data_s {
 } error_data_t;
 
 typedef struct free_array_s {
-    bool condition;
     void *var;
     void (*func)(void *);
 } free_array_t;

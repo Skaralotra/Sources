@@ -14,15 +14,12 @@ int error_free(size_t const size, free_array_t const free_array[])
     if (!free_array)
         return ERROR_CODE;
     for (size_t i = 0; i < size; i++)
-        if (free_array[i].condition)
+        if (!free_array[i].var)
             failed_batch = true;
     if (!failed_batch)
         return SUCCESS_CODE;
-    for (size_t i = 0; i < size; i++) {
-        if (!free_array[i].func)
-            continue;
-        if (!free_array[i].condition)
+    for (size_t i = 0; i < size; i++)
+        if (free_array[i].func && free_array[i].var)
             free_array[i].func(free_array[i].var);
-    }
     return ERROR_CODE;
 }

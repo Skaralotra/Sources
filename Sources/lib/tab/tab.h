@@ -23,7 +23,7 @@
     #include <stdlib.h>
 
 //---DEFINES---//
-    #define ALLOC_SIZE (2)
+    #define ALLOC_SIZE (25)
     #define ROUND(value) (((value) % ALLOC_SIZE) != 0 || !(value))
     #define MAX_SIZE(value) (((value) / ALLOC_SIZE + ROUND(value)) * ALLOC_SIZE)
 
