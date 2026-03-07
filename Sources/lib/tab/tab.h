@@ -7,13 +7,12 @@
 
 /** Syntax Example ***
 
-    char **tab = create_cslab();
+    char **slab = create_slab();
 
-    slab = append_cslab(tab, (char *[]){"Hello", "World", NULL});
-
-    int **slab = create_islab();
-
-    slab = append_islab(slab, (int *[]){(int []){1,2}, (int []){3,4}, NULL});
+    append_slab(&slab, "Hello");
+    extend_slab(&slab, (args_t){"World", "Puppy", "Kitty", NULL});
+    print("slab : %t\n", (args_t){slab});
+    free(slab);
 
 *** Syntax Example **/
 
@@ -24,13 +23,14 @@
     #include <stdlib.h>
 
 //---DEFINES---//
-    #define ALLOC_SIZE (25)
+    #define ALLOC_SIZE (2)
     #define ROUND(value) (((value) % ALLOC_SIZE) != 0 || !(value))
     #define MAX_SIZE(value) (((value) / ALLOC_SIZE + ROUND(value)) * ALLOC_SIZE)
 
 //---TYPES---//
 typedef long int ssize_t;
 typedef long unsigned size_t;
+typedef void const *args_t[];
 
 //---PROTOTYPES---//
 // create_tab.c
@@ -42,10 +42,10 @@ ssize_t tab_len(void *tab);
 ssize_t dprint_ctab(int fd, char const *const *tab, char const separ[]);
 ssize_t print_ctab(char const *const *tab, char const separ[]);
 // resize_tab.c
-void *resize_tab(void *tab, size_t new_size);
+void resize_tab(void *tab, size_t new_size);
 // insert_slab.c
-void *append_slab(void *slab, void *element);
-void *extend_slab(void *slab, void *elements);
+void append_slab(void *slab, void *element);
+void extend_slab(void *slab, void *elements);
 // free_tab.c
 void free_tab(void *tab);
 

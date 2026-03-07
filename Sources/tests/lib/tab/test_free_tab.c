@@ -15,10 +15,10 @@ Test(free_ctab, standard_free)
     tab[0] = malloc(sizeof(char) * 5);
     tab[1] = malloc(sizeof(char) * 5);
     tab[2] = NULL;
-    free_ctab(tab);
+    free_tab(tab);
 }
 
 Test(free_ctab, null_input)
 {
-    free_ctab(NULL);
+    free_tab(NULL);
 }

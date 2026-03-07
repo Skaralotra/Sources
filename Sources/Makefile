@@ -42,7 +42,7 @@ all:	$(NAME)
 
 $(NAME): $(SRC_OBJ)
 	$(MAKE) -C./lib/ --no-print-directory
-	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $(NAME) $(SRC_OBJ) $(CFLAGS) $(LDLIBS)
 
 clean: epiclean
 	$(MAKE) -C./lib/ clean --no-print-directory

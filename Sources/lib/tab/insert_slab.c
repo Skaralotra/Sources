@@ -6,31 +6,30 @@
 */
 
 #include "tab.h"
+#include "error.h"
 
-void *append_slab(void *slab, void *element)
+void append_slab(void *slab, void *element)
 {
-    size_t const slab_len = tab_len(slab);
+    size_t const slab_len = tab_len(*(void ***)slab);
 
     if (slab_len + 1 > MAX_SIZE(slab_len))
-        slab = resize_tab(slab, MAX_SIZE(slab_len + 1));
-    if (!slab)
-        return NULL;
-    ((void **)slab)[slab_len] = element;
-    ((void **)slab)[slab_len + 1] = NULL;
-    return slab;
+        resize_tab(slab, MAX_SIZE(slab_len + 1));
+    if (!*(void ***)slab)
+        return call_warning("NULL Slab", ERROR_DATA);
+    (*(void ***)slab)[slab_len] = element;
+    (*(void ***)slab)[slab_len + 1] = NULL;
 }
 
-void *extend_slab(void *slab, void *elements)
+void extend_slab(void *slab, void *elements)
 {
-    size_t const slab_len = tab_len(slab);
+    size_t const slab_len = tab_len(*(void ***)slab);
     size_t const elem_len = tab_len(elements);
 
     if (slab_len + elem_len > MAX_SIZE(slab_len))
-        slab = resize_tab(slab, MAX_SIZE(slab_len + elem_len));
-    if (!slab || !elements)
-        return NULL;
+        resize_tab(slab, MAX_SIZE(slab_len + elem_len));
+    if (!*(void ***)slab || !elements)
+        return call_warning("NULL Slab", ERROR_DATA);
     for (size_t i = 0; i < elem_len; i++)
-        ((void **)slab)[slab_len + i] = ((void **)elements)[i];
-    ((void **)slab)[slab_len + elem_len] = NULL;
-    return slab;
+        (*(void ***)slab)[slab_len + i] = ((void **)elements)[i];
+    (*(void ***)slab)[slab_len + elem_len] = NULL;
 }

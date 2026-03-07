@@ -9,6 +9,7 @@
     #define DEFINE_H
 
 //---IMPORTS---//
+    #include "typedef.h"
 
 //---DEFINES---//
     #define SUCCESS_CODE (0)
