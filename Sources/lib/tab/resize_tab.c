@@ -10,11 +10,14 @@
 
 void resize_tab(void *tab, size_t const new_size)
 {
-    size_t const size = tab_len(*(void ***)tab);
+    size_t size;
     void **new_tab = malloc(sizeof(void *) * (new_size + 1));
 
+    if (!tab)
+        return call_warning("NULL Pointer", ERROR_DATA);
+    size = tab_len(*(void ***)tab);
     if (!*(void ***)tab || !new_tab)
-        return call_warning("NULL Slab", ERROR_DATA);
+        return call_warning("NULL Tab", ERROR_DATA);
     for (size_t i = 0; i < size && i < new_size; i++)
         new_tab[i] = (*(void ***)tab)[i];
     new_tab[new_size] = NULL;

@@ -22,6 +22,8 @@
 
 //---DEFINES---//
 
+    #define NUM(value) ((void *)(long)(value))
+
 //---TYPES---//
 typedef long int ssize_t;
 typedef long unsigned size_t;
@@ -34,7 +36,7 @@ ssize_t dprint(int fd, char const *format, void const *args[]);
 
 //### INTERNAL COMPONENTS ###//
 
-typedef struct print_type_s {
+typedef struct {
     char type;
     ssize_t (*func)(int fd, void const *);
 } print_type_t;

@@ -37,6 +37,8 @@ char *str_dup(char const *str);
 char *concat_str(char const *str1, char const *str2);
 // str_identical.c
 bool str_identical(char const *str1, char const *str2);
+// find_char.c
+bool find_char(char const *str, char chara);
 // check_format.c
 //bool check_format(char const *format, char const *str);
 

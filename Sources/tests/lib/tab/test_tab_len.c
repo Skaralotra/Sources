@@ -8,14 +8,14 @@
 #include <criterion/criterion.h>
 #include "tab.h"
 
-Test(ctab_len, standard)
+Test(tab_len, standard)
 {
-    char const *const tab[] = {"Hello", "World", NULL};
+    char *tab[] = {"Hello", "World", NULL};
 
-    cr_assert_eq(ctab_len(tab), 2);
+    cr_assert_eq(tab_len(tab), 2);
 }
 
-Test(ctab_len, null_input)
+Test(tab_len, null_input)
 {
-    cr_assert_eq(ctab_len(NULL), 0);
+    cr_assert_eq(tab_len(NULL), 0);
 }

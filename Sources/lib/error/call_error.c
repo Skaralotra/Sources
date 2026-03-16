@@ -13,7 +13,7 @@ static void print_error(char const *message, error_data_t const data[])
     dprint(2, "- - - ERROR - - -\n"
         "%s|%s:%d Caught Error : %s\n"
         "- - - - - - - - -\n",
-        (args_t){data->file, data->func, &data->line, message});
+        (args_t){data->file, data->func, NUM(data->line), message});
 }
 
 int call_error(char const *message, error_data_t const data[])
@@ -37,5 +37,5 @@ void *call_nerror(char const *message, error_data_t const data[])
 void call_warning(char const *message, error_data_t const data[])
 {
     dprint(2, "%s|%s:%d Warning : %s\n", (args_t)
-        {data->file, data->func, &data->line, message});
+        {data->file, data->func, NUM(data->line), message});
 }

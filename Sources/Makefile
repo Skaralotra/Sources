@@ -67,6 +67,7 @@ test_run: unit_tests
 
 gcovr_run: test_run
 	gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
+	$(MAKE) clean --no-print-directory
 
 #----- BONUS -----#
 run: all

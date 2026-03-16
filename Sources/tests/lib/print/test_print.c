@@ -29,7 +29,7 @@ Test(print, decimal_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
-    cr_assert_eq(print("Decimal : %d\n", (args_t){&num}), 14);
+    cr_assert_eq(print("Decimal : %d\n", (args_t){NUM(num)}), 14);
     cr_assert_stdout_eq_str("Decimal : 125\n");
 }
 
@@ -37,7 +37,7 @@ Test(print, hexa_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
-    cr_assert_eq(print("Hexa : %x\n", (args_t){&num}), 10);
+    cr_assert_eq(print("Hexa : %x\n", (args_t){NUM(num)}), 10);
     cr_assert_stdout_eq_str("Hexa : 7d\n");
 }
 
@@ -45,7 +45,7 @@ Test(print, octal_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
-    cr_assert_eq(print("Octal : %o\n", (args_t){&num}), 12);
+    cr_assert_eq(print("Octal : %o\n", (args_t){NUM(num)}), 12);
     cr_assert_stdout_eq_str("Octal : 175\n");
 }
 
@@ -53,7 +53,7 @@ Test(print, binary_type, .init = cr_redirect_stdout)
 {
     int const num = 125;
 
-    cr_assert_eq(print("Binary : %b\n", (args_t){&num}), 17);
+    cr_assert_eq(print("Binary : %b\n", (args_t){NUM(num)}), 17);
     cr_assert_stdout_eq_str("Binary : 1111101\n");
 }
 

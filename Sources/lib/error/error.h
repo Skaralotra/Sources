@@ -30,13 +30,13 @@ if (error_free(3, (free_array_t []){
 typedef long int ssize_t;
 typedef long unsigned size_t;
 
-typedef struct error_data_s {
+typedef struct {
     char const *file;
     char const *func;
     int line;
 } error_data_t;
 
-typedef struct free_array_s {
+typedef struct {
     void *var;
     void (*func)(void *);
 } free_array_t;
