@@ -17,16 +17,16 @@ SRC_OBJ	 = $(SRC:.c=.o)
 # COMPILATION	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 #----- FLAGS -----#
-CFLAGS = "-Wall" "-Wextra" "-g3"
+CFLAGS 		= "-Wall" "-Wextra" "-g3"
 
-CPPFLAGS = "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
+CPPFLAGS	= "-I./include" $(shell find ./lib/ -mindepth 1 -type d -printf "-I./lib/%f/ ")
 
-LDFLAGS = "-L./lib/"
-LDLIBS	= "-lmy"
+LDFLAGS 	= "-L./lib/"
+LDLIBS		= "-lmy"
 
-CRIT 	= "--coverage" "-lcriterion"
+CRIT 		= "--coverage" "-lcriterion"
 
-CC = "clang"
+CC 			= "clang"
 
 # NAMES	 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 TEST_NAME 	= "unit_tests"
