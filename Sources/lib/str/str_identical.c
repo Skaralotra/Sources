@@ -9,7 +9,7 @@
 
 bool str_identical(char const *str1, char const *str2)
 {
-    int i = 0;
+    size_t i = 0;
 
     if (!str1 || !str2)
         return (!str1 && !str2);
@@ -17,6 +17,20 @@ bool str_identical(char const *str1, char const *str2)
         if (str1[i] != str2[i])
             return false;
     if (str1[i] || str2[i])
+        return false;
+    return true;
+}
+
+bool str_nidentical(char const *str1, char const *str2, size_t const len)
+{
+    size_t i = 0;
+
+    if (!str1 || !str2)
+        return (!str1 && !str2);
+    for (; str1[i] && str2[i] && i < len; i++)
+        if (str1[i] != str2[i])
+            return false;
+    if (i < len)
         return false;
     return true;
 }
