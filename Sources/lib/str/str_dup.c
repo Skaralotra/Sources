@@ -18,3 +18,16 @@ char *str_dup(char const *str)
         str_dup[i] = str[i];
     return str_dup;
 }
+
+char *str_ndup(char const *str, size_t const size)
+{
+    size_t len = 0;
+    char *str_dup = malloc(sizeof(char) * (size + 1));
+
+    if (!str || !str_dup)
+        return NULL;
+    for (; str[len] && len < size; len++)
+        str_dup[len] = str[len];
+    str_dup[len] = STR_END;
+    return str_dup;
+}

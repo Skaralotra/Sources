@@ -33,6 +33,7 @@ ssize_t dprint_char(int fd, char c);
 size_t str_len(char const *str);
 // str_dup.c
 char *str_dup(char const *str);
+char *str_ndup(char const *str, size_t size);
 // concat_str.c
 char *concat_str(char const *str1, char const *str2);
 // str_identical.c
