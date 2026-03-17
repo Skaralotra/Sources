@@ -41,6 +41,8 @@ bool str_identical(char const *str1, char const *str2);
 bool str_nidentical(char const *str1, char const *str2, size_t len);
 // find_char.c
 bool find_char(char const *str, char chara);
+// separate_str.c
+char **separate_str(char const *str, char const *separator);
 // check_format.c
 //bool check_format(char const *format, char const *str);
 
