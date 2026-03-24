@@ -11,13 +11,16 @@
 
 char **separate_str(char const *str, char const *separator)
 {
-    char **separated = create_slab();
+    char **separated = NULL;
     size_t const separator_len = str_len(separator);
     size_t start = 0;
     size_t len = 0;
 
-    if (!str || !separator || !separated)
+    if (!str || !separator)
         return call_nerror("NULL Argument", ERROR_DATA);
+    separated = create_slab();
+    if (!separated)
+        return call_nerror("Malloc Failed", ERROR_DATA);
     while (str[start + len])
         if (str_nidentical(&str[start + len], separator, separator_len)) {
             append_slab(&separated, str_ndup(&str[start], len));
