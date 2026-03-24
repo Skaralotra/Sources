@@ -14,3 +14,13 @@ bool find_char(char const *str, char const chara)
             return true;
     return false;
 }
+
+size_t count_char(char const *str, char const chara)
+{
+    size_t count = 0;
+
+    for (int i = 0; str && str[i]; i++)
+        if (str[i] == chara)
+            count++;
+    return count;
+}

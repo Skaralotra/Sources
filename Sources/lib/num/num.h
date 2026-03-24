@@ -30,9 +30,10 @@ size_t num_len(int nb);
 // get_num.c
 ssize_t get_num(char const *str);
 // is_numerical.c
-bool is_numerical(char const *str);
+bool is_integer(char const *str);
+bool is_float(char const *str);
 // power.c
-ssize_t power(ssize_t const nb, ssize_t const p);
+ssize_t power(ssize_t nb, ssize_t p);
 
 //### INTERNAL COMPONENTS ###//
 
