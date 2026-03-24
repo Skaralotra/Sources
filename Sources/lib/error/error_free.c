@@ -20,6 +20,6 @@ int error_free(size_t const size, free_array_t const free_array[])
         return SUCCESS_CODE;
     for (size_t i = 0; i < size; i++)
         if (free_array[i].func && free_array[i].var)
-            free_array[i].func(free_array[i].var);
+            free_array[i].func((void *)free_array[i].var);
     return ERROR_CODE;
 }

@@ -19,6 +19,8 @@ void append_slab(void *slab, void *element)
         resize_tab(slab, MAX_SIZE(slab_len + 1));
     if (!*(void ***)slab)
         return call_warning("NULL Slab", ERROR_DATA);
+    if (!element)
+        call_warning("NULL Element", ERROR_DATA);
     (*(void ***)slab)[slab_len] = element;
     (*(void ***)slab)[slab_len + 1] = NULL;
 }

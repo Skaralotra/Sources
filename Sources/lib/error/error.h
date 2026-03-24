@@ -37,14 +37,16 @@ typedef struct {
 } error_data_t;
 
 typedef struct {
-    void *var;
+    void const *var;
     void (*func)(void *);
 } free_array_t;
+
+typedef free_array_t err_arr_t[];
 
 //---PROTOTYPES---//
 // call_error.c
 int call_error(char const *message, error_data_t const data[]);
-int call_ierror(int const code, char const *message, error_data_t const data[]);
+int call_ierror(int code, char const *message, error_data_t const data[]);
 void *call_nerror(char const *message, error_data_t const data[]);
 void call_warning(char const *message, error_data_t const data[]);
 // error_free.c

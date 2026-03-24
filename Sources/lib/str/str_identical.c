@@ -30,7 +30,7 @@ bool str_nidentical(char const *str1, char const *str2, size_t const len)
     for (; str1[i] && str2[i] && i < len; i++)
         if (str1[i] != str2[i])
             return false;
-    if (i < len)
+    if (i < len && (str1[i] || str2[i]))
         return false;
     return true;
 }
