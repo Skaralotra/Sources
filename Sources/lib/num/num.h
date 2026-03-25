@@ -21,19 +21,19 @@ typedef long unsigned size_t;
 
 //---PROTOTYPES---//
 // print_num.c
-ssize_t print_num(long long nb);
-ssize_t dprint_num(int fd, long long nb);
-ssize_t print_base(long long nb, int base);
-ssize_t dprint_base(int fd, long long nb, int base);
+ssize_t print_num(long long nbr);
+ssize_t dprint_num(int fd, long long nbr);
+ssize_t print_base(long long nbr, int base);
+ssize_t dprint_base(int fd, long long nbr, int base);
 // num_len.c
-size_t num_len(int nb);
+size_t num_len(int nbr);
 // get_num.c
 ssize_t get_num(char const *str);
 // is_numerical.c
 bool is_integer(char const *str);
 bool is_float(char const *str);
 // power.c
-ssize_t power(ssize_t nb, ssize_t p);
+ssize_t power(ssize_t nbr, ssize_t pow);
 
 //### INTERNAL COMPONENTS ###//
 

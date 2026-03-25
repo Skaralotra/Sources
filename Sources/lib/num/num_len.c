@@ -7,15 +7,15 @@
 
 #include "num.h"
 
-size_t num_len(int nb)
+size_t num_len(int nbr)
 {
     size_t len = 0;
 
-    if (nb < 0) {
-        nb = -nb;
+    if (nbr < 0) {
+        nbr = -nbr;
         len++;
     }
-    for (; nb; len++)
-        nb /= 10;
+    for (; nbr; len++)
+        nbr /= 10;
     return (len ? len : 1);
 }

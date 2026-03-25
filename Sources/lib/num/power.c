@@ -7,11 +7,11 @@
 
 #include "num.h"
 
-ssize_t power(ssize_t const nb, ssize_t const p)
+ssize_t power(ssize_t const nbr, ssize_t const pow)
 {
-    if (p == 0)
+    if (pow == 0)
         return 1;
-    if (p < 0)
+    if (pow < 0)
         return 0;
-    return nb * power(nb, p - 1);
+    return nbr * power(nbr, pow - 1);
 }

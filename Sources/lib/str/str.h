@@ -27,8 +27,8 @@ typedef long unsigned size_t;
 // print.c
 ssize_t print_str(char const *str);
 ssize_t dprint_str(int fd, char const *str);
-ssize_t print_char(char c);
-ssize_t dprint_char(int fd, char c);
+ssize_t print_char(char chara);
+ssize_t dprint_char(int fd, char chara);
 // str_len.c
 size_t str_len(char const *str);
 // str_dup.c

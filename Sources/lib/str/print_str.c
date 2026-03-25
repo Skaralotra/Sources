@@ -19,12 +19,12 @@ ssize_t print_str(char const *str)
     return dprint_str(1, str);
 }
 
-ssize_t dprint_char(int const fd, char const c)
+ssize_t dprint_char(int const fd, char const chara)
 {
-    return write(fd, &c, 1);
+    return write(fd, &chara, 1);
 }
 
-ssize_t print_char(char const c)
+ssize_t print_char(char const chara)
 {
-    return dprint_char(1, c);
+    return dprint_char(1, chara);
 }
