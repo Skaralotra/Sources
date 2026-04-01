@@ -42,10 +42,10 @@ ssize_t tab_len(void *tab);
 ssize_t dprint_ctab(int fd, char const *const *tab, char const separ[]);
 ssize_t print_ctab(char const *const *tab, char const separ[]);
 // resize_tab.c
-void resize_tab(void *tab, size_t new_size);
+int resize_tab(void *tab, size_t new_size);
 // insert_slab.c
-void append_slab(void *slab, void *element);
-void extend_slab(void *slab, void *elements);
+int append_slab(void *slab, void *element);
+int extend_slab(void *slab, void *elements);
 // free_tab.c
 void free_tab(void *tab);
 
