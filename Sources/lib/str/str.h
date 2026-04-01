@@ -42,8 +42,12 @@ bool str_nidentical(char const *str1, char const *str2, size_t len);
 // find_char.c
 bool find_char(char const *str, char chara);
 size_t count_char(char const *str, char chara);
+bool valid_char(char const *str, char const *valid_chars);
+void replace_char(char *str, char old_char, char new_char);
 // separate_str.c
 char **separate_str(char const *str, char const *separator);
+// clean_str.c
+void clean_mixed(char *str, char const *mixed);
 // check_format.c
 //bool check_format(char const *format, char const *str);
 

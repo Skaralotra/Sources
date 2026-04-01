@@ -30,7 +30,7 @@ char *str_ndup(char const *str, size_t const size)
 
     if (!str)
         return call_nerror("NULL Argument", ERROR_DATA);
-    str_dup = malloc(sizeof(char) * (len + 1));
+    str_dup = malloc(sizeof(char) * (size + 1));
     if (!str_dup)
         return call_nerror("Malloc Failed", ERROR_DATA);
     for (; str[len] && len < size; len++)

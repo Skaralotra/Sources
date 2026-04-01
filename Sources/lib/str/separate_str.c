@@ -5,8 +5,8 @@
 ** <description>
 */
 
-#include "error.h"
 #include "str.h"
+#include "error.h"
 #include "tab.h"
 
 char **separate_str(char const *str, char const *separator)
