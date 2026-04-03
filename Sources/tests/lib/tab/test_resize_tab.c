@@ -33,9 +33,9 @@ Test(resize_tab, resize_NULL_pointer, .init = cr_redirect_stderr)
 
     cr_assert_eq(resize_tab(NULL, new_size), 84);
     cr_assert_stderr_eq_str(
-    "- - - ERROR - - -\n"
-    "./lib/tab/resize_tab.c|resize_tab:17 Caught Error : NULL Tab\n"
-    "- - - - - - - - -\n");
+        "- - - ERROR - - -\n"
+        "./lib/tab/resize_tab.c|resize_tab:17 Caught Error : NULL Tab\n"
+        "- - - - - - - - -\n");
 }
 
 Test(resize_tab, resize_NULL_tab, .init = cr_redirect_stderr)
@@ -45,7 +45,7 @@ Test(resize_tab, resize_NULL_tab, .init = cr_redirect_stderr)
 
     cr_assert_eq(resize_tab(&tab, new_size), 84);
     cr_assert_stderr_eq_str(
-    "- - - ERROR - - -\n"
-    "./lib/tab/resize_tab.c|resize_tab:17 Caught Error : NULL Tab\n"
-    "- - - - - - - - -\n");
+        "- - - ERROR - - -\n"
+        "./lib/tab/resize_tab.c|resize_tab:17 Caught Error : NULL Tab\n"
+        "- - - - - - - - -\n");
 }

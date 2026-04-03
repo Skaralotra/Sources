@@ -68,9 +68,9 @@ Test(extend_slab, extend_NULL_pointer, .init = cr_redirect_stderr)
 {
     cr_assert_eq(extend_slab(NULL, (void *[]){"Hello", "World", NULL}), 84);
     cr_assert_stderr_eq_str(
-    "- - - ERROR - - -\n"
-    "./lib/tab/insert_slab.c|extend_slab:35 Caught Error : NULL Pointer\n"
-    "- - - - - - - - -\n");
+        "- - - ERROR - - -\n"
+        "./lib/tab/insert_slab.c|extend_slab:35 Caught Error : NULL Pointer\n"
+        "- - - - - - - - -\n");
 }
 
 Test(extend_slab, extend_NULL_slab, .init = cr_redirect_stderr)
@@ -79,9 +79,9 @@ Test(extend_slab, extend_NULL_slab, .init = cr_redirect_stderr)
 
     cr_assert_eq(extend_slab(&slab, (void *[]){"Hello", "World", NULL}), 84);
     cr_assert_stderr_eq_str(
-    "- - - ERROR - - -\n"
-    "./lib/tab/insert_slab.c|extend_slab:40 Caught Error : NULL Slab\n"
-    "- - - - - - - - -\n");
+        "- - - ERROR - - -\n"
+        "./lib/tab/insert_slab.c|extend_slab:40 Caught Error : NULL Slab\n"
+        "- - - - - - - - -\n");
 }
 
 Test(extend_slab, extend_NULL_elements, .init = cr_redirect_stderr)
@@ -90,8 +90,8 @@ Test(extend_slab, extend_NULL_elements, .init = cr_redirect_stderr)
 
     cr_assert_eq(extend_slab(&slab, NULL), 84);
     cr_assert_stderr_eq_str(
-    "- - - ERROR - - -\n"
-    "./lib/tab/insert_slab.c|extend_slab:42 Caught Error : NULL Elements\n"
-    "- - - - - - - - -\n");
+        "- - - ERROR - - -\n"
+        "./lib/tab/insert_slab.c|extend_slab:42 Caught Error : NULL Elements\n"
+        "- - - - - - - - -\n");
     free(slab);
 }
