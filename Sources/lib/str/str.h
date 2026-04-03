@@ -15,6 +15,7 @@
 
 //---DEFINES---//
     #define STR_END ('\0')
+    #define SEPAR_CHAR (' ')
     #define LOW_DIFF ('a' - 'A')
     #define IS_LETTER(cha) ('a' <= LOWER(cha) && LOWER(cha) <= 'z')
     #define LOWER(cha) ('A' <= cha && cha <= 'Z' ? (char)(cha + LOW_DIFF) : cha)
