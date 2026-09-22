@@ -37,7 +37,7 @@ typedef void const *args_t[];
 void *create_tab(size_t size);
 void *create_slab(void);
 // tab_len.c
-ssize_t tab_len(void *tab);
+size_t tab_len(void *tab);
 // print_tab.c
 ssize_t dprint_ctab(int fd, char const *const *tab, char const separ[]);
 ssize_t print_ctab(char const *const *tab, char const separ[]);

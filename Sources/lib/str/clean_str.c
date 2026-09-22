@@ -32,10 +32,10 @@ void clean_mixed(char *str, char const *mixed)
             space = true;
         }
         if (!find_char(mixed, str[i]) && space) {
-            str[start] = (char)(!i ? str[start] : SEPAR_CHAR);
+            str[start] = (!i ? str[start] : SEPAR_CHAR);
             str_downshift(&str[start + !!start], i - start - !!start);
-            space = false;
             i = start;
+            space = false;
         }
     }
     if (space)

@@ -7,7 +7,7 @@
 
 #include "tab.h"
 
-ssize_t tab_len(void *tab)
+size_t tab_len(void *tab)
 {
     ssize_t len = 0;
 

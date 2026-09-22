@@ -10,7 +10,7 @@
     char const str[] = "hello";
     int var = str_len(str);
 
-    int print("%d\n%b\n%s\n%s", (ARGS){&var, &var, str, "word"});
+    print("%d\n%x\n%s\n%s", (ARGS){NUM(var), NUM(var), str, "word"});
 
 *** Syntax Example **/
 

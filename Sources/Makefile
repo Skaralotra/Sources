@@ -62,10 +62,10 @@ re:	fclean all
 unit_tests: fclean
 	$(CC) -o $(TEST_NAME) $(filter-out ./src/main.c, $(SRC)) $(LIB) $(TEST) $(CFLAGS) $(CPPFLAGS) $(CRIT)
 
-test_run: unit_tests
+tests_run: unit_tests
 	./$(TEST_NAME)
 
-gcovr_run: test_run
+gcovr_run: tests_run
 	gcovr --gcov-executable "llvm-cov gcov" --exclude tests/
 	$(MAKE) clean --no-print-directory
 
